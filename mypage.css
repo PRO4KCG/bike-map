@@ -1,0 +1,26 @@
+img {
+    width: 70%;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.right {
+    text-align: right;
+}
+
+.mypage-wrapper {
+    width: 40%;
+    margin: 0 auto;
+    display: flex;
+    text-align: center;
+}
+
+.info {
+    width: 50%;
+}
+
+.favedit {
+    width: 50%;
+}
