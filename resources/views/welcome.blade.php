@@ -119,5 +119,6 @@
                 </div>
                 <div id="mapid" style="width: 100%;height: 600px;"></div>
             </div>
+            <p>こんにちは</p>
     </body>
 </html>
