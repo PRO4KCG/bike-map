@@ -118,6 +118,7 @@ return [
 
     'attributes' => [
         'password'=>'パスワード',//追記部分
+        'email'=>'メールアドレス',
     ],
 
 ];
