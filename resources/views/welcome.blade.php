@@ -118,7 +118,6 @@
                     </div>
                 </div>
                 <div id="mapid" style="width: 100%;height: 600px;"></div>
-                <p>GITのテスト用（自分の環境に入れた時に削除する）</p>
             </div>
     </body>
 </html>
