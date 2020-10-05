@@ -7,12 +7,12 @@
   
   <div class="collapse navbar-collapse" id="bs-navi">
     <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000">ホーム</a></li>
-      <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/search/">検索</a></li>
-      <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/login">ログイン</a></li>
-      <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/register">新規登録</a></li>
-      <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/postscreen/">ユーザー投稿</a></li>
-      <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/mypage/">マイページ</a></li>
+      <li class="nav-item"><a class="nav-link" href="/">ホーム</a></li>
+      <li class="nav-item"><a class="nav-link" href="search">検索</a></li>
+      <li class="nav-item"><a class="nav-link" href="login">ログイン</a></li>
+      <li class="nav-item"><a class="nav-link" href="register">新規登録</a></li>
+      <li class="nav-item"><a class="nav-link" href="postscreen">ユーザー投稿</a></li>
+      <li class="nav-item"><a class="nav-link" href="mypage">マイページ</a></li>
     </ul>
   </div>
 </nav>
