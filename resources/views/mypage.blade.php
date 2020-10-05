@@ -26,15 +26,15 @@
                         <ul class="list-group list-group-flush">
                             <!--ユーザー名-->
                             <li class="list-group-item">
-                                <span class="badge badge-light "><h4>user1</h4></span>
+                                <span class="badge badge-light "><h4>ユーザー名</h4></span>
                                 <input type="text" class="form-control" aria-describedby="emailHelp"
-                                       placeholder="ユーザー名">
+                                       placeholder="user1">
                             </li>
                             <!--bikeの車種名-->
                             <li class="list-group-item">
-                                <span class="badge badge-light"><h4>CBR</h4></span>
+                                <span class="badge badge-light"><h4>バイクの車種</h4></span>
                                 <input type="text" class="form-control" aria-describedby="emailHelp"
-                                       placeholder="バイクの車種">
+                                       placeholder="CBR">
                             </li>
                             <!--bikeの画像-->
                             <li class="list-group-item">
