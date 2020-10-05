@@ -19,6 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('bikeName')->nullable();
+            $table->binary('favBikeImage1')->nullable();
+            $table->binary('favBikeImage2')->nullable();
+            $table->binary('favBikeImage3')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
