@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <head>
-    <meta charset="utf-8">
-    <title>postscreen</title>
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
+@extends('layout.common')
+
+@section('content')
   <div class="container">
         <h2>ユーザー投稿</h2>
             <div class="card">
@@ -85,5 +73,4 @@
             </div>
         </div>
     </div>
-  </body>
-</html>
+@endsection
