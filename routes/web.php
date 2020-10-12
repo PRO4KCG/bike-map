@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //mypageを表示
-//Route::get('/mypage', 'PagesController@getMypage');
+Route::get('/mypage', 'PagesController@getMypage');
 
 //searchを表示
 //Route::get('/search', 'PagesController@getSearch');
