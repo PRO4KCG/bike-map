@@ -4,20 +4,22 @@ var map = null;
 
 const mapon = () =>{//html読み込み時にjsを処理
     map = L.map('mapid').setView([37.985358, 135.753331], 5);
+    /*
     var routing = document.querySelector(".Routing");
     var startLocX = null;
     var startLocY = null;
     var endLocX = null;
     var endLocY = null;
+    */
     let DestLat = Number(DestinationLat);
     let DestLon = Number(DestinationLon);
     let DestName = DestinationName;
     let MeLocationLat = null;
     let MeLocationLon = null;
 
-    var Ygeocoder = new Y.GeoCoder();
+    //var Ygeocoder = new Y.GeoCoder();
 
-    var start = document.querySelector(".start");
+    //var start = document.querySelector(".start");
 
     var NaviStart = document.querySelector(".btn-primary");
     var getlocate = document.querySelector("#GetLocate");
@@ -35,6 +37,7 @@ const mapon = () =>{//html読み込み時にjsを処理
     var owm_key = "39e545646eebdf1e60bcc141aa8fa102";
 
     //経路探索
+    /*
     routing.onclick = () =>{
         L.Routing.control({
             waypoints: [
@@ -44,12 +47,13 @@ const mapon = () =>{//html読み込み時にjsを処理
             routeWhileDragging: true
         }).addTo(map);
     }
+    */
 
+    /*
     //住所から緯度経度
-    start.onclick = () =>{  
+    start.onclick = () =>{ 
         var input_message = document.getElementById("input_messageS").value;
             console.log(input_message)
-            
             var request = { query : input_message};
 
             Ygeocoder.execute(request , function( ydf_data ){
@@ -64,7 +68,9 @@ const mapon = () =>{//html読み込み時にjsを処理
                     startLocX = latlng.lng()
                   }
             })
+            
     }
+    */
    //ナビ開始
    NaviStart.onclick = () => {
     L.Routing.control({
