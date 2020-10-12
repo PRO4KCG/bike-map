@@ -9,7 +9,7 @@
 //window.testjs = {};
 //window.testjs.kekka = test;
 
- console.log(Destination);
+
 </script>
 <?php
     
@@ -25,13 +25,14 @@
                 </span>
             </div>
         </div>
-
+    
          <div id="mapid" style="width: 100%;height: 600px;"></div>
+         <!--
             <button class="start">出発地</button>
                 <input type="text" id="input_messageS" value="">
 
          <button class="Routing">経路探索</button>
-
+    --> 
          <button onClick="GetLocate()" id="GetLocate">現在地の取得</button>
             <button type="button" class="btn btn-primary" onClick="NaviStart()">ナビ開始</button>
             @endsection

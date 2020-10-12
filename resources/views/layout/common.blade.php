@@ -14,16 +14,15 @@
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-         <script type="text/javascript" charset="utf-8"
-         src="http://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPXNNTUFzTGJsaTRFZiZzPWNvbnN1bWVyc2VjcmV0Jng9NGU-"></script>
+       
         
 
         <!-- js -->
-        <script type="text/javascript" charset="utf-8"
-        src="http://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPXNNTUFzTGJsaTRFZiZzPWNvbnN1bWVyc2VjcmV0Jng9NGU-"></script>
+        
 
         <!--<script src="{{ asset('/js/topmap.js') }}"></script>-->
-
+        
+        <!--https://map.yahooapis.jp/search/local/V1/localSearch-->
         
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
