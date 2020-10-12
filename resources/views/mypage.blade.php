@@ -8,16 +8,21 @@
                 <div class="col-md-5 col-sm-12">
                     <div class="card" style="width:">
                         <div class="card-header　badge badge-primary">
-                            <h2>プロフィール</h2>
+                            <h2 style="text-align:center;">プロフィール</h2>
                         </div>
                         <!--ユーザー名から写真まで-->
                         <ul class="list-group list-group-flush">
                             <!--ユーザー名-->
                             <li class="list-group-item">
-                                <span class="badge badge-light "><h4>ユーザー名</h4></span>
+                                <span class="badge badge-light "><h4>名前</h4></span>
                                 <input type="text" class="form-control" aria-describedby="emailHelp"
-                                       placeholder="user1">
+                                       placeholder="username">
                             </li>
+                              <!--メールアドレス-->
+                            <li class="list-group-item">
+                                <span class="badge badge-light "><h4>メールアドレス</h4></span>
+                                <input type="text" class="form-control" aria-describedby="emailHelp"
+                                       placeholder="bike@email.com">
                             <!--bikeの車種名-->
                             <li class="list-group-item">
                                 <span class="badge badge-light"><h4>バイクの車種</h4></span>
@@ -45,7 +50,7 @@
                 <div class="col-md-5 col-sm-12　">
                     <div class="card" style="width:">
                         <div class="card-header　badge badge-primary">
-                            <h2>投稿内容編集</h2>
+                            <h2 style="text-align:center;">投稿内容編集</h2>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
