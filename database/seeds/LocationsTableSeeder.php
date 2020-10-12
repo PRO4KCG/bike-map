@@ -17,6 +17,12 @@ class LocationsTableSeeder extends Seeder
             'latitude' => 34.985041,
             'longitude' => 135.752556,
         ]);
+
+        DB::table('locations') -> insert([
+            'locationName' => '阪神甲子園球場',
+            'latitude' => 34.721217,
+            'longitude' => 135.361656,
+        ]);
     }
 
     

@@ -20,10 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //mypageを表示
-Route::get('/mypage', 'PagesController@getMypage');
+//Route::get('/mypage', 'PagesController@getMypage');
 
 //searchを表示
-Route::get('/search', 'PagesController@getSearch');
+//Route::get('/search', 'PagesController@getSearch');
+Route::post('/search', 'PagesController@postSearch');
 
 //postscreenを表示
 Route::get('/postscreen', 'PagesController@getPostscreen');

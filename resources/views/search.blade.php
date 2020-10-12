@@ -1,6 +1,20 @@
 @extends('layout.common')
-
 @section('content')
+<script>
+    
+ let DestinationLat = "{{$resultLat}}";
+ let DestinationLon = "{{$resultLon}}";
+ let DestinationName = "{{$resultName}}";
+
+//window.testjs = {};
+//window.testjs.kekka = test;
+
+ console.log(Destination);
+</script>
+<?php
+    
+?>
+<script src="{{ asset('/js/Mapping.js') }}"></script>
         <div class="container">
             <!--検索フォーム-->
             <div class="spot-serch">
@@ -18,6 +32,6 @@
 
          <button class="Routing">経路探索</button>
 
-         <button onClick="GetLocate()">現在地の取得</button>
-            <button type="button" class="btn btn-primary">ナビ開始</button>
+         <button onClick="GetLocate()" id="GetLocate">現在地の取得</button>
+            <button type="button" class="btn btn-primary" onClick="NaviStart()">ナビ開始</button>
             @endsection
