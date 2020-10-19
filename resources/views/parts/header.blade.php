@@ -14,6 +14,32 @@
       <li class="nav-item"><a class="nav-link" href="login">ログイン</a></li>
       <li class="nav-item"><a class="nav-link" href="register">新規登録</a></li>
       <li class="nav-item"><a class="nav-link" href="postscreen">ユーザー投稿</a></li>
+       <!--ログアウトボタン-->
+      @guest
+
+                           
+                        @else
+                            <li class="nav-item dropright">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                               
+                                  <div class="badge-pill badge-light dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <a class="text-danger" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                          <div style="text-align:center;">             
+                                            {{ __('ログアウト') }}
+                                          </div>
+                                      </a>
+
+                                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                          @csrf
+                                      </form>
+                                  </div>
+                         
+                            </li>
+                        @endguest
       <!--
       <li class="nav-item"><a class="nav-link" href="mypage">マイページ</a></li>
       -->
@@ -22,28 +48,7 @@
 </nav>
 </nav>
 </div>
-@guest
 
-                            <!--ログアウトボタン-->
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
 </header>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
