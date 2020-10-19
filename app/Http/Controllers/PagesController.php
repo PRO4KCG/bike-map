@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Location;
 use App\User;
 use \InterventionImage;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
@@ -18,11 +19,14 @@ class PagesController extends Controller
         //mypageを表示POST画像投稿
         public function postMypage(Request $request){
           $path1 = $request->file('image1_file')->store('public/img');
-          //dd($path1);
-          $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path1)));
           $path2 = $request->file('image2_file')->store('public/img');
           $path3 = $request->file('image3_file')->store('public/img');
-          User::where('id', 2)
+          //dd($path1);
+          $id = Auth::id();
+          $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path1)));
+          $repath2 = InterventionImage::make(storage_path('app/public/img/' . basename($path2)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path2)));
+          $repath3 = InterventionImage::make(storage_path('app/public/img/' . basename($path3)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path3)));
+          User::where('id', $id)
               ->update(
                   [
                     'favBikeImage1' => basename($path1),
