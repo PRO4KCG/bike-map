@@ -12,12 +12,12 @@
 ?>
 
 <div class="container">
-    <div class="row paddingfive">
+    <div class="row paddingfive" >
         <!--プロフィール-->
         <div class="col-md-5 col-sm-12">
-            <div class="card" style="width:">
-                <div class="card-header　badge badge-primary">
-                    <h2 style="text-align:center;">プロフィール</h2>
+            <div class="card ">
+                <div class="card-header  badge badge-primary"style="text-align:center;">
+                    <h2 class="p-1">プロフィール</h2>
                 </div>
                 <!--ユーザー名から写真まで-->
                 <ul class="list-group list-group-flush">
@@ -38,16 +38,71 @@
                     <!--bikeの画像-->
                     <li class="list-group-item">
                         <span class="badge badge-light"><h4>バイク画像</h4></span>*3枚まで
+
+
+                            <div class="accordion" id="accordionExample">
+                              <div class="card">
+
+                                    <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      画像1
+                                    </button>
+                                
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                  <div class="card-body">
+                                    <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}">
+                                </div>
+                              </div>
+                              <div class="card">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      画像2
+                                    </button>
+                            
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                  <div class="card-body">
+                                    <img src="/storage/img/{{ Auth::user()->favBikeImage2 }}">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                    
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                      画像3
+                                    </button>
+                    
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                  <div class="card-body">
+                                    <img src="/storage/img/{{ Auth::user()->favBikeImage3 }}">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                              
+                              
+
+                        <!--
                         <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}">
                         <img src="/storage/img/{{ Auth::user()->favBikeImage2 }}">
                         <img src="/storage/img/{{ Auth::user()->favBikeImage3 }}">
+                    -->
                         
                     </li>
+                         <!-- バイク投稿フォーム--> 
+        <form action="mypage" method="post" enctype="multipart/form-data">
+            @csrf
+            <!--
+            <input type="text" class="col-md-12 form-control" placeholder="料理名を入力" name="dish">
+            -->
+            <input type="file" class="form-control" name="image1_file">
+            <input type="file" class="form-control" name="image2_file">
+            <input type="file" class="form-control" name="image3_file">
+            <input type="submit" class="btn btn-primary float-sm-right" value="投稿">
+        </form>
                 </ul>
             </div>
             
             <!--ボタン-->
-            <div class="text-md-right text-right paddingfive">
+            <div class="text-md-center text-right paddingfive">
                 <button type="button" class="btn btn-primary">保存</button>
             </div>
             
@@ -59,8 +114,8 @@
         <!--投稿内容編集-->
         <div class="col-md-5 col-sm-12　">
             <div class="card" style="width:">
-                <div class="card-header　badge badge-primary">
-                    <h2 style="text-align:center;">投稿内容編集</h2>
+                <div class="card-header badge badge-primary">
+                    <h2 class="p-1" style="text-align:center;">投稿内容編集</h2>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -83,17 +138,19 @@
             </div>
         </div>
 
-        <!-- バイク投稿フォーム -->
+        <!--
+        <!-- バイク投稿フォーム 
         <form action="mypage" method="post" enctype="multipart/form-data">
             @csrf
             <!--
             <input type="text" class="col-md-12 form-control" placeholder="料理名を入力" name="dish">
-            -->
+            
             <input type="file" class="form-control" name="image1_file">
             <input type="file" class="form-control" name="image2_file">
             <input type="file" class="form-control" name="image3_file">
             <input type="submit" class="btn btn-primary" value="投稿">
         </form>
+        -->
         
     </div>
 </div>
