@@ -29,3 +29,9 @@ Route::post('/search', 'PagesController@postSearch');
 
 //postscreenを表示
 Route::get('/postscreen', 'PagesController@getPostscreen');
+
+//mailを表示
+Route::get('/mail', 'PagesController@getPostscreen');
+
+//新規投稿画面を表示
+Route::get('/newpost', 'PagesController@getPostscreen');
