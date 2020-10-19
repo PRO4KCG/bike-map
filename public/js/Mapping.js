@@ -11,11 +11,17 @@ const mapon = () =>{//html読み込み時にjsを処理
     var endLocX = null;
     var endLocY = null;
     */
-    let DestLat = Number(DestinationLat);
-    let DestLon = Number(DestinationLon);
-    let DestName = DestinationName;
+    let DestLat;
+    let DestLon;
+    //let DestName = DestinationName;
+    let markers = [];
+ 
     let MeLocationLat = null;
     let MeLocationLon = null;
+
+    console.log(Object.keys(dest).length);
+
+
 
     //var Ygeocoder = new Y.GeoCoder();
 
@@ -29,9 +35,49 @@ const mapon = () =>{//html読み込み時にjsを処理
     }).addTo(map);
      
     //目的地にピンを建てる
+    for(let i = 0; i < Object.keys(dest).length; i++) {
+        DestLat = dest[i]["latitude"];
+        DestLon = dest[i]["longitude"];
+        markers[i] = L.marker([DestLat, DestLon]).addTo(map).on('click',function(e) { clickEvent(e); } );
+        markers[i].bindPopup(L.popup({
+            //closeOnClick: true,
+            autoClose: false
+        }).setContent(dest[i]["locationName"])).openPopup();
+        markers[i].name = dest[i]["locationName"];
+        markers[i].latitude = DestLat;
+        markers[i].longitude = DestLon;
+        markers[i].number = i;
+    }
+    
+    //クリックイベントで発火する関数
+    function clickEvent(e){
+        //alert( e.target.latitude + ": "+ e.target.longitude);
+        alert(e.target.name + "が選択されました");
+        
+        DestLat = e.target.latitude;
+        DestLon = e.target.longitude;
+        console.log("number:"+e.target.number);
+        console.log(markers);
+
+        let currentMarkers = [];
+
+        for(let i = 0; i < markers.length; i++) {
+            map.removeLayer(markers[i]);
+            if(e.target.number == i) {
+                currentMarkers = markers[i]
+            }
+        }
+        let marker = L.marker([currentMarkers.latitude, currentMarkers.longitude]).addTo(map);
+        marker.bindPopup(currentMarkers.name).openPopup();
+        //map.removeLayer(markers[e.target.number]);
+        //marker = L.marker([DestLat, DestLon]).addTo(map);
+        //marker.bindPopup(e.target.name).openPopup();
+        //map.panTo(e.latlng);
+    }
+    /*
      let marker = L.marker([DestLat, DestLon]).addTo(map);
      marker.bindPopup(DestName).openPopup();
-
+    */
 
     //OpenWeatherMap天気予報API
     var owm_key = "39e545646eebdf1e60bcc141aa8fa102";
