@@ -21,12 +21,10 @@ class PagesController extends Controller
           $path1 = $request->file('image1_file')->store('public/img');
           $path2 = $request->file('image2_file')->store('public/img');
           $path3 = $request->file('image3_file')->store('public/img');
-          //dd($path1);
-          $id = Auth::id();
           $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path1)));
           $repath2 = InterventionImage::make(storage_path('app/public/img/' . basename($path2)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path2)));
           $repath3 = InterventionImage::make(storage_path('app/public/img/' . basename($path3)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path3)));
-          User::where('id', $id)
+          User::where('id', Auth::id())
               ->update(
                   [
                     'favBikeImage1' => basename($path1),
@@ -41,7 +39,7 @@ class PagesController extends Controller
         //searchを表示
         public function getSearch(){
           $destination=null;
-            return view('search',compact('destination'));
+            return view('search',compact('dest'));
           }
 
           public function postSearch(Request $request){
@@ -49,12 +47,12 @@ class PagesController extends Controller
             $destination = $request->input('place');//検索ページのキーワードを取得
 
             //$result = \App\Location::Where('locationName','like','%'+$destination+'%')->first();
-            $resultLat = Location::Where('locationName','like',"%$destination%")->value('latitude');
-            $resultLon = Location::Where('locationName','like',"%$destination%")->value('longitude');
-            $resultName = Location::Where('locationName','like',"%$destination%")->value('locationName');
+            $result = Location::Where('locationName','like',"%$destination%")->get()->toArray();
+            //$resultLon = Location::Where('locationName','like',"%$destination%")->get('longitude');
+            //$resultName = Location::Where('locationName','like',"%$destination%")->get('locationName');
+            //dd($result);
             
-            
-            return view('search',compact('resultLat','resultLon','resultName'));
+            return view('search',compact("result"));
           }
     
         //postscreenを表示

@@ -1,19 +1,14 @@
 @extends('layout.common')
 @section('content')
 <script>
-    
- let DestinationLat = "{{$resultLat}}";
- let DestinationLon = "{{$resultLon}}";
- let DestinationName = "{{$resultName}}";
 
-//window.testjs = {};
-//window.testjs.kekka = test;
+let dest = @json($result);
+
+console.log(typeof(dest));
+console.log(dest);
 
 
 </script>
-<?php
-    
-?>
 <script src="{{ asset('/js/Mapping.js') }}"></script>
         <div class="container">
             <!--検索フォーム-->
