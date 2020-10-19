@@ -22,6 +22,7 @@
             <label for="message">場所名</label>
             <textarea id="spotname" name="spotname" rows="8" cols="80" class="form-control"placeholder="琵琶湖"></textarea>
         </div>
+        <button type="submit" class="btn btn-primary">送信</button>
     </form>
 </div>
 @endsection
