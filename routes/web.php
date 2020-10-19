@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //mypageを表示
 Route::get('/mypage', 'PagesController@getMypage');
+Route::post('/mypage', 'PagesController@postMypage');
 
 //searchを表示
 //Route::get('/search', 'PagesController@getSearch');
