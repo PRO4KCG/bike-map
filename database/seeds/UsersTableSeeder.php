@@ -19,6 +19,13 @@ class UsersTableSeeder extends Seeder
             'bikeName' => 'CB400SF'
         ]);
 
+        DB::table('users') -> insert([
+            'name' => 'admin',
+            'email' => 'admin@mail.com',
+            'password' => Hash::make('admin1234'),
+            'bikeName' => 'CB400SF'
+        ]);
+
 
         
     }
