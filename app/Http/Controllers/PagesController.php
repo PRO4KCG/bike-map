@@ -60,17 +60,19 @@ class PagesController extends Controller
     return view('search',compact("result"));
   }
     
-  //postscreenを表示
-  public function getPostscreen(){
-   return view('postscreen');
-  }
 
-  //mailを表示
-  public function getMail(){
-    return view('mail');
-  }
-  //newpostを表示
-  public function getNewpost(){
-    return view('newpost');
-  }
+        //postscreenを表示
+        public function getPostscreen(){
+            return view('postscreen');
+          }
+
+        //mailを表示
+        public function getMail(){
+          return view('mail');
+        }
+        //newpostを表示
+        public function getNewpost(){
+          return view('newpost');
+        }
+
 }

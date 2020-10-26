@@ -33,7 +33,7 @@ Route::get('/search/{id}', 'PagesController@getSearch');
 Route::get('/postscreen', 'PagesController@getPostscreen');
 
 //mailを表示
-Route::get('/mail', 'PagesController@getPostscreen');
+Route::get('/mail', 'PagesController@getMail');
 
 //新規投稿画面を表示
-Route::get('/newpost', 'PagesController@getPostscreen');
+Route::get('/newpost', 'PagesController@getNewpost');
