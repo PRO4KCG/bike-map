@@ -10,10 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/', 'PagesController@getIndex');
 
 Auth::routes();
 
@@ -24,8 +26,8 @@ Route::get('/mypage', 'PagesController@getMypage');
 Route::post('/mypage', 'PagesController@postMypage');
 
 //searchを表示
-//Route::get('/search', 'PagesController@getSearch');
 Route::post('/search', 'PagesController@postSearch');
+Route::get('/search/{id}', 'PagesController@getSearch');
 
 //postscreenを表示
 Route::get('/postscreen', 'PagesController@getPostscreen');
