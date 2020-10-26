@@ -20,7 +20,6 @@ console.log(dest);
                 </span>
             </div>
         </div>
-    
          <div id="mapid" style="width: 100%;height: 600px;"></div>
          <!--
             <button class="start">出発地</button>

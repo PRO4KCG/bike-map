@@ -87,17 +87,21 @@
                     -->
                         
                     </li>
+
+
                          <!-- バイク投稿フォーム--> 
-        <form action="mypage" method="post" enctype="multipart/form-data">
-            @csrf
-            <!--
-            <input type="text" class="col-md-12 form-control" placeholder="料理名を入力" name="dish">
-            -->
-            <input type="file" class="form-control" name="image1_file">
-            <input type="file" class="form-control" name="image2_file">
-            <input type="file" class="form-control" name="image3_file">
-            <input type="submit" class="btn btn-primary float-sm-right" value="投稿">
-        </form>
+                        <form action="mypage" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <!--
+                            <input type="text" class="col-md-12 form-control" placeholder="料理名を入力" name="dish">
+                            -->
+                            <input type="file" class="form-control" name="image1_file">
+                            <input type="file" class="form-control" name="image2_file">
+                            <input type="file" class="form-control" name="image3_file">
+                            <input type="submit" class="btn btn-primary float-sm-right" value="投稿">
+                        </form>
+
+                        
                 </ul>
             </div>
             
