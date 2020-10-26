@@ -56,8 +56,14 @@ class PagesController extends Controller
     //$resultLon = Location::Where('locationName','like',"%$destination%")->get('longitude');
     //$resultName = Location::Where('locationName','like',"%$destination%")->get('locationName');
     //dd($result);
-            
-    return view('search',compact("result"));
+    if(count($result) == 1){//検索結果が一つの時はsearchOneに飛ばす
+      //return redirect('/');
+      return redirect()->action(
+        'PagesController@getSearch', ['id' => $result[0]['locationID']]
+      );
+    }else{
+      return view('search',compact("result"));
+    }
   }
     
 

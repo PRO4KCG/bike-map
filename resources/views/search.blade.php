@@ -9,7 +9,9 @@ console.log(dest);
 
 
 </script>
+<script src="{{ asset('/js/weather.js') }}"></script>
 <script src="{{ asset('/js/Mapping.js') }}"></script>
+
         <div class="container">
             <!--検索フォーム-->
             <div class="spot-serch">
@@ -29,4 +31,6 @@ console.log(dest);
     --> 
          <button onClick="GetLocate()" id="GetLocate">現在地の取得</button>
             <button type="button" class="btn btn-primary" onClick="NaviStart()">ナビ開始</button>
-            @endsection
+            
+            @include('weather')
+@endsection
