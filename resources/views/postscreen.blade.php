@@ -3,6 +3,7 @@
 @section('content')
   <div class="container">
         <h2>ユーザー投稿</h2>
+        <a href="{{ url('/newpost') }}"><button type="button" class="btn btn-primary">投稿画面</button></a>
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">タイトル</h4>
