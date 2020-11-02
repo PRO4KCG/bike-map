@@ -7,7 +7,7 @@
         console.log(tr);
     </script>
     <script src="{{ asset('/js/topmap.js') }}"></script>
-                <div class="container">
+                <div class="container-fluid">
     <!--検索フォーム-->
                 <div class="row">
                
@@ -19,7 +19,8 @@
     		                        <button type="submit" class="btn btn-default">検索</button>
     	                        </span>
                         </div>
-                    </form>    
+                    </form>
+                    <br>
                 </div>
                 
                     <div id="mapid" style="width: 100%;height: 600px;"></div>

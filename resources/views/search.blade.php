@@ -12,17 +12,22 @@ console.log(dest);
 <script src="{{ asset('/js/weather.js') }}"></script>
 <script src="{{ asset('/js/Mapping.js') }}"></script>
 
-        <div class="container">
+        <div class="container-fluid">
             <!--検索フォーム-->
             <div class="spot-serch">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="地名入力">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default">検索</button>
-                </span>
+                        </span>
+                </div>
             </div>
-        </div>
-         <div id="mapid" style="width: 100%;height: 600px;"></div>
+            <br>
+
+            
+            <div id="mapid" style="width: 100%;height: 600px;"></div>
+         </div>
+    
          <!--
             <button class="start">出発地</button>
                 <input type="text" id="input_messageS" value="">
