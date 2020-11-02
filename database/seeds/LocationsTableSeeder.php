@@ -11,7 +11,12 @@ class LocationsTableSeeder extends Seeder
      */
     public function run()
     {
-        /*
+        DB::table('locations') -> insert([
+            'locationName' => '登録待ち',
+            'latitude' => 34.352506,
+            'longitude' => 145.173339,
+        ]);
+        
         DB::table('locations') -> insert([
             'locationName' => '京都コンピュータ学院京都駅前校',
             'latitude' => 34.985041,
@@ -35,14 +40,17 @@ class LocationsTableSeeder extends Seeder
             'latitude' => 35.044426,
             'longitude' => 135.772223,
         ]);
-        */
+        
 
+        
         DB::table('locations') -> insert([
             'locationName' => '旭山・雪の村',
             'latitude' => 43.767938,
             'longitude' => 142.484065,
         ]);
-    }
+        
 
-    
+        
+        
+    }
 }

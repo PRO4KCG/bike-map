@@ -22,9 +22,9 @@ class CreateFavoriteLocsTable extends Migration
             $table->string('title');
             $table->integer('rating')->default(0);
             $table->text('comment');
-            $table->binary('iamges1')->nullable();
-            $table->binary('iamges2')->nullable();
-            $table->binary('iamges3')->nullable();
+            $table->string('images1')->nullable();
+            $table->string('images2')->nullable();
+            $table->string('images3')->nullable();
             $table->timestamps();
         });
     }
