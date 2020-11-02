@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use App\Location;
 use App\User;
+use App\Favoriteloc;
+use App\Temporarily;
 use \InterventionImage;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,12 +52,7 @@ class PagesController extends Controller
   public function postSearch(Request $request){
             
     $destination = $request->input('place');//検索ページのキーワードを取得
-
-    //$result = \App\Location::Where('locationName','like','%'+$destination+'%')->first();
     $result = Location::Where('locationName','like',"%$destination%")->get()->toArray();
-    //$resultLon = Location::Where('locationName','like',"%$destination%")->get('longitude');
-    //$resultName = Location::Where('locationName','like',"%$destination%")->get('locationName');
-    //dd($result);
     if(count($result) == 1){//検索結果が一つの時はsearchOneに飛ばす
       //return redirect('/');
       return redirect()->action(
@@ -67,18 +64,52 @@ class PagesController extends Controller
   }
     
 
-        //postscreenを表示
-        public function getPostscreen(){
-            return view('postscreen');
-          }
+  //postscreenを表示
+  public function getPostscreen(){
+    $postResults = Favoriteloc::get();
+    return view('postscreen', compact('postResults'));
+  }
 
-        //mailを表示
-        public function getMail(){
-          return view('mail');
-        }
-        //newpostを表示
-        public function getNewpost(){
-          return view('newpost');
-        }
+  //mailを表示
+  public function getMail(){
+    return view('mail');
+  }
+  
+  //newpostを表示
+  public function getNewpost(){
+    return view('newpost');
+  }
+
+  public function postNewpost(Request $request){
+    $all = Request::all();
+    //dd($all);
+    //dd($all["Title"]);
+
+    $result = Location::Where('locationName', $all["Spotname"])->get()->toArray();
+    if(count($result) == 0){
+      $locId = 1;
+    }else {
+      $locId = $result[0]["locationID"];
+    }
+
+    Favoriteloc::insert([
+      'id' => Auth::id(),
+      'locationID' => $locId,
+      'title' => $all["Title"],
+      'comment' => $all["Sentence"],
+      'created_at' => now(),
+      'updated_at' => now()
+    ]);
+
+    if(count($result) == 0) {
+      Temporarily::insert([
+        'favLocID' => FavoriteLoc::count(),
+        'name' => $all["Spotname"],
+        'created_at' => now(),
+        'updated_at' => now()
+      ]);
+    }
+    return view('newpost');
+  }
 
 }
