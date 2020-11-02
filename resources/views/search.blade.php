@@ -14,14 +14,17 @@ console.log(dest);
 
         <div class="container-fluid">
             <!--検索フォーム-->
+            <form action="/search" method="post" class="col-sm-12">
+            @csrf
             <div class="spot-serch">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="地名入力">
+                    <input type="text" class="form-control" placeholder="地名入力" name="place">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default">検索</button>
                         </span>
                 </div>
             </div>
+            </form>
             <br>
 
             
