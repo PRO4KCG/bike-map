@@ -83,8 +83,8 @@ class PagesController extends Controller
   {
     $like = $request->input('like');
     //dd($like);
-    $postResults = Favoriteloc::get();
     Favoriteloc::where('favLocID', $like)->increment('rating');
+    $postResults = Favoriteloc::get();
     return view('postscreen', compact('postResults'));
   }
 
