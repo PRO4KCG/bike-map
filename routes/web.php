@@ -31,6 +31,7 @@ Route::get('/search/{id}', 'PagesController@getSearch');
 
 //postscreenを表示
 Route::get('/postscreen', 'PagesController@getPostscreen');
+Route::post('/postscreen', 'PagesController@postPostscreen');
 
 //mailを表示
 Route::get('/mail', 'PagesController@getMail');

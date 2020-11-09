@@ -124,7 +124,7 @@
                         <div class="card" style="width:">
                             <div class="card-body">
                                 <h5 class="card-title">琵琶湖よかったです。</h5>
-                                <div class="card-text">投稿内容aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+                                <div class="card-text">投稿内容</div>
                                
                                 <br>
 
@@ -133,7 +133,8 @@
                                 <a href="#" class="card-link btn btn-danger float-right">削除<a>
 
                                     <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
-                                     <div class=" offset-1  badge badge-primary">
+                                    <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
+                                     <div class="btn btn-primary">
                                     いいね数:
                                     <span>1</span>
                                 </div>
