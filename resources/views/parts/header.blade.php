@@ -29,9 +29,10 @@
         <div class="ml-auto">
             <nav class="navbar">
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#logout" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
-                    <span>{{ Auth::user()->name }}</span>
+                    <a href="{{ url('/mypage') }}"><span>{{ Auth::user()->name }}</span></a>
                 </button>
             </nav>
+            <!--ログアウトボタン
             <div class="collapse navbar-collapse" id="logout">
                 <a class="text-danger " href="{{ route('logout') }}" onclick="event.preventDefault();
 																													 document.getElementById('logout-form').submit();">
@@ -43,6 +44,7 @@
                     @csrf
                 </form>
             </div>
+            -->
             <!--
         	<li class="nav-item dropdown" style="  list-style: none;">
             <a id="navbarDropdown " class="nav-link dropdown-toggle btn-lg" href="#" role="button" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false" v-pre>
