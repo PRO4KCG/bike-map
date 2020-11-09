@@ -4,7 +4,7 @@ const topmap = () => {
     let DestLat;
     let DestLon;
 
-    top_map = L.map('mapid').setView([37.985358, 135.753331], 5);
+    top_map = L.map('mapid').setView([36.985358, 135.753331], 6);
 
     L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
         attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
@@ -16,6 +16,9 @@ const topmap = () => {
     //marker.bindPopup("ｋｃｇ").openPopup();
 
     for(let i = 0; i < Object.keys(tr).length; i++) {
+        if(tr[i]["locationName"] == "登録待ち") {
+            continue;
+        }
         DestLat = tr[i]["latitude"];
         DestLon = tr[i]["longitude"];
         markers[i] = L.marker([DestLat, DestLon]).addTo(top_map).on('click',function(e) { clickEvent(e); } );
@@ -33,7 +36,7 @@ const topmap = () => {
    //window.location = "/search"
    function clickEvent(e){
     //alert( e.target.latitude + ": "+ e.target.longitude);
-    
+    /*
     DestLat = e.target.latitude;
     DestLon = e.target.longitude;
     console.log("number:"+e.target.number);
@@ -49,6 +52,7 @@ const topmap = () => {
     }
     let marker = L.marker([currentMarkers.latitude, currentMarkers.longitude]).addTo(top_map);
     marker.bindPopup(currentMarkers.name).openPopup();
+    */
     //map.removeLayer(markers[e.target.number]);
     //marker = L.marker([DestLat, DestLon]).addTo(map);
     //marker.bindPopup(e.target.name).openPopup();
