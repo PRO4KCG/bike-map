@@ -78,6 +78,16 @@ class PagesController extends Controller
     return view('postscreen', compact('postResults'));
   }
 
+    //postscreenを表示(post)
+  public function postPostscreen(Request $request)
+  {
+    $like = $request->input('like');
+    //dd($like);
+    $postResults = Favoriteloc::get();
+    Favoriteloc::where('favLocID', $like)->increment('rating');
+    return view('postscreen', compact('postResults'));
+  }
+
   //mailを表示
   public function getMail()
   {
