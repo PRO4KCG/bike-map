@@ -9,7 +9,10 @@
             @foreach ($postResults as $post)
                 <h4 class="card-title">{{ $post->title }}</h4>
                 <p class="card-text">{{ $post->comment }}</p>
-                <a href="#" class="card-link">いいねボタン</a>
+                <form action="/postscreen" method="post">
+                    @csrf
+                    <button type="submit" class="card-link" name="like" value="{{ $post->favLocID }}">いいねボタン</button>
+                </form>
                 <p>{{ $post->rating }}</p>
             @endforeach
         </div>
