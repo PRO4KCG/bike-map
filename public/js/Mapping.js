@@ -59,7 +59,7 @@ const mapon = () =>{//html読み込み時にjsを処理
     }
     
     if(markers.length == 1){
-    fetch('http://api.openweathermap.org/data/2.5/onecall?lat='+DestLat+'&lon='+DestLon+'&lang=ja&APPID=39e545646eebdf1e60bcc141aa8fa102')
+    fetch('https://api.openweathermap.org/data/2.5/onecall?lat='+DestLat+'&lon='+DestLon+'&lang=ja&APPID=39e545646eebdf1e60bcc141aa8fa102')
     .then(function(response){
         return response.json();
     }).then(function(json){
