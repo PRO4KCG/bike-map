@@ -20,8 +20,8 @@
     	                        </span>
                         </div>
                     </form>
-                    <br>
                 </div>
+                <br>
                 
                     <div id="mapid" style="width: 100%;height: 600px;"></div>
                
