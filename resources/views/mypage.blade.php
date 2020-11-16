@@ -9,6 +9,11 @@
     //Unable to guess the MIME type as no guessers are available (have you enabled the php_fileinfo extension?).
 ?>
 <div class="container">
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
     <div class="row paddingfive">
         <!--プロフィール-->
         <div class="col-md-5 col-sm-12">
@@ -96,10 +101,12 @@
                             <input type="file" class="form-control" name="image1_file[]" multiple="multiple">
                         -->
 
-                            <input type="file" class="form-control" name="image1_file">
+                            <input type="file" class="form-control" name="images[]" multiple>
+                            <!--
                             <input type="file" class="form-control" name="image2_file">
                             <input type="file" class="form-control" name="image3_file">
-                        
+                            -->
+
                             <br>
                             <input type="submit" class="btn btn-primary float-right" value="投稿">
                         </form>
@@ -117,7 +124,7 @@
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
-
+            </form>
             
         </div>
         <!--真ん中の空白-->
@@ -133,39 +140,43 @@
                     <h2 class="p-1" style="text-align:center;">投稿内容編集</h2>
                 </div>
                 <ul class="list-group list-group-flush">
+                @foreach ($postResults as $post)
                     <li class="list-group-item">
                         <div class="card" style="width:">
                             <div class="card-body">
-                                <h5 class="card-title">琵琶湖よかったです。</h5>
-                                <div class="card-text">投稿内容</div>
+                                <h5 class="card-title">{{ $post->title }}</h5>
+                                <div class="card-text">{{ $post->comment }}</div>
                                
                                 <br>
 
                                
                                 <div class="col-4"></div>
-                                <a href="#" class="card-link btn btn-danger float-right">削除<a>
+                                <form action="mypage" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="card-link btn btn-danger float-right">削除</button>
+                                </form>
 
                                     <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
                                     <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
                                      <div class="btn btn-primary">
                                     いいね数:
-                                    <span>1</span>
+                                    <span>{{ $post->rating }}</span>
                                 </div>
-                                        <a href="#" class="card-link btn btn-primary float-right">編集<a>
+                                        <button type="submit" class="card-link btn btn-primary float-right">編集</button>
                                      
                                            
                         </div>
                     </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
         <!--
-        <!-- バイク投稿フォーム 
+         バイク投稿フォーム 
         <form action="mypage" method="post" enctype="multipart/form-data">
             @csrf
-            <!--
             <input type="text" class="col-md-12 form-control" placeholder="料理名を入力" name="dish">
-            
             <input type="file" class="form-control" name="image1_file">
             <input type="file" class="form-control" name="image2_file">
             <input type="file" class="form-control" name="image3_file">
