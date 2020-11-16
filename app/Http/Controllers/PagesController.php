@@ -23,27 +23,42 @@ class PagesController extends Controller
   //mypageを表示
   public function getMypage()
   {
-    return view('mypage');
+    $postResults = Favoriteloc::where('id', Auth::id())->get();
+    return view('mypage', compact('postResults'));
   }
 
   //mypageを表示POST画像投稿
   public function postMypage(Request $request)
   {
-    $path1 = $request->file('image1_file')->store('public/img');
-    $path2 = $request->file('image2_file')->store('public/img');
-    $path3 = $request->file('image3_file')->store('public/img');
-    $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path1)));
-    $repath2 = InterventionImage::make(storage_path('app/public/img/' . basename($path2)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path2)));
-    $repath3 = InterventionImage::make(storage_path('app/public/img/' . basename($path3)))->resize(350, 350)->save(storage_path('app/public/img/' . basename($path3)));
-    User::where('id', Auth::id())
-      ->update(
-        [
-          'favBikeImage1' => basename($path1),
-          'favBikeImage2' => basename($path2),
-          'favBikeImage3' => basename($path3)
-        ]
-      );
-    //$results = User::find(2);
+    $postResults = Favoriteloc::where('id', Auth::id())->get();
+    $count = 1;
+    $images = $request->file('images');
+    if(count($images) > 3){
+      return redirect('mypage')->with('status', '画像は3枚まで選択できます');
+    }
+    foreach ($images as $img) {
+      //dd('favBikeImage'.$count);
+    
+      $path1 = $img->store('public/img');
+      $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, null, function($constraint)
+        {
+          $constraint->aspectRatio();
+        }
+        )->save(storage_path('app/public/img/' . basename($path1)));
+      User::where('id', Auth::id())
+        ->update(
+          [
+            'favBikeImage'.$count => basename($path1)
+          ]
+        );
+        $count++;
+    }
+    return view('mypage', compact('postResults'));
+  }
+
+  public function deleteMypage()
+  {
+    dd("OK");
     return view('mypage');
   }
 

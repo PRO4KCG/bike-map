@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //mypageを表示
 Route::get('/mypage', 'PagesController@getMypage');
 Route::post('/mypage', 'PagesController@postMypage');
+Route::delete('/mypage', 'PagesController@deleteMypage');//投稿内容の削除
 
 //searchを表示
 Route::post('/search', 'PagesController@postSearch');
