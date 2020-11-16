@@ -1,0 +1,6 @@
+
+@charset "utf-8";
+
+.leaflet-routing-container,.leaflet-bar, .leaflet-routing-collapsible, .leaflet-control{
+    visibility: hidden;
+}

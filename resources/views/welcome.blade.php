@@ -1,5 +1,8 @@
     @extends('layout.common')
     @section('content')
+    <head>
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    </head>
     <script>
         let tr = @json($topResult);
 
@@ -7,6 +10,7 @@
         console.log(tr);
     </script>
     <script src="{{ asset('/js/topmap.js') }}"></script>
+    <script src="{{ asset('/js/mapscroll.js') }}"></script>
                 <div class="container-fluid">
     <!--検索フォーム-->
                 <div class="row">
@@ -22,8 +26,8 @@
                     </form>
                 </div>
                 <br>
-                
+                <div class="map">
                     <div id="mapid" style="width: 100%;height: 600px;"></div>
-               
+                </div>
         
     @endsection
