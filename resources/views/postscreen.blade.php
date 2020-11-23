@@ -47,7 +47,12 @@
         @foreach ($postResults as $post)
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="https://placehold.jp/320x240.png" class="card-img">
+                @isset($post->images1)
+                    <img src="/storage/img/{{ $post->images1 }}" >
+                @endisset
+                @empty($post->images1)
+                    <img src="https://placehold.jp/320x240.png" >
+                @endempty
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -56,6 +61,7 @@
                   
                         <form action="/postscreen" method="post" class="form-inline">
                             @csrf
+                            @method('patch')
                             <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
                         </form>
                    

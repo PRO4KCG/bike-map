@@ -33,6 +33,7 @@ Route::get('/search/{id}', 'PagesController@getSearch');
 //postscreenを表示
 Route::get('/postscreen', 'PagesController@getPostscreen');
 Route::post('/postscreen', 'PagesController@postPostscreen');
+Route::patch('/postscreen', 'PagesController@patchPostscreen');//いいね機能
 
 //mailを表示
 Route::get('/mail', 'PagesController@getMail');
