@@ -21,8 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('bikeName')->nullable();
             $table->string('favBikeImage1')->nullable();
+            /*
             $table->string('favBikeImage2')->nullable();
             $table->string('favBikeImage3')->nullable();
+            */
             $table->rememberToken();
             $table->timestamps();
         });
