@@ -41,11 +41,12 @@
                         <span class="badge badge-light">
                             <h4>バイクの車種</h4>
                         </span>
-                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="CBR" value="{{ Auth::user()->bikeName }}">
-                        <!--ボタン-->
+                        <input type="text" class="form-control" aria-describedby="emailHelp"  value="{{ Auth::user()->bikeName }}">
+                        <!--保存ボタン
                         <div class="text-md-center text-right paddingfive p-2">
                             <button type="button" class="btn btn-primary float-right">保存</button>
                         </div>
+                        -->
                     </li>
                     <!--bikeの画像-->
                     <li class="list-group-item">
@@ -59,7 +60,7 @@
                                 </button>
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}">
+                                        <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}"  onerror="this.onerror = null; this.src='';">
                                     </div>
                                 </div>
                                 <div class="card">
@@ -68,7 +69,7 @@
                                     </button>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <img src="/storage/img/{{ Auth::user()->favBikeImage2 }}">
+                                            <img src="/storage/img/{{ Auth::user()->favBikeImage2 }}"   onerror="this.onerror = null; this.src='';">
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +79,7 @@
                                     </button>
                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <img src="/storage/img/{{ Auth::user()->favBikeImage3 }}">
+                                            <img src="/storage/img/{{ Auth::user()->favBikeImage3 }}"  alt onerror="this.onerror = null; this.src='';">
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +109,13 @@
                             -->
 
                             <br>
-                            <input type="submit" class="btn btn-primary float-right" value="投稿">
+                            <!--④マイページの保存と投稿を一纏めにするFB
+                                -
+                                -
+                                -
+                                -
+-->
+                            <input type="submit" class="btn btn-primary float-right" value="保存">
                         </form>
                     </div>
                 </ul>
@@ -116,9 +123,9 @@
 
 
 
-               <a class="text-danger dropdown-item " href="{{ route('logout') }}" onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();">
-                <div style="text-align:center;">
+               <a class="dropdown-item " href="{{ route('logout') }}" onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();" style="text-align:center;">
+                <div class="btn btn-danger">
                     {{ __('ログアウト') }}
                 </div>
             </a>
@@ -133,6 +140,8 @@
             <br>
             <br>
         </div>
+
+
         <!--投稿内容編集-->
         <div class="col-md-5 col-sm-12　">
             <div class="card" style="width:">
@@ -159,10 +168,7 @@
 
                                     <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
                                     <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
-                                     <div class="btn btn-primary">
-                                    いいね数:
-                                    <span>{{ $post->rating }}</span>
-                                </div>
+                                    <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i>  <span>{{ $post->rating }}</span></button>
                                         <button type="submit" class="card-link btn btn-primary float-right">編集</button>
                                      
                                            
