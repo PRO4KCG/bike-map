@@ -80,6 +80,8 @@ class PagesController extends Controller
         'PagesController@getSearch',
         ['id' => $result[0]['locationID']]
       );
+    }else if(count($result) == 0){
+      return redirect('/')->with('status', '検索結果がありません');
     } else {
       return view('search', compact("result"));
     }
@@ -118,9 +120,8 @@ class PagesController extends Controller
   public function postNewpost(Request $request)
   {
     $all = PostRequest::all();
-    //dd($all);
-    //dd($all["Title"]);
-
+    $images = $all["image_file"];
+    dd($images);
     $result = Location::Where('locationName', $all["Spotname"])->get()->toArray();
     if (count($result) == 0) {
       $locId = 1;
@@ -133,6 +134,9 @@ class PagesController extends Controller
       'locationID' => $locId,
       'title' => $all["Title"],
       'comment' => $all["Sentence"],
+      /*
+      'images' => $all[""]
+      */
       'created_at' => now(),
       'updated_at' => now()
     ]);

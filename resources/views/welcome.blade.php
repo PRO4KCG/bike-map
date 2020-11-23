@@ -12,9 +12,13 @@
     <script src="{{ asset('/js/topmap.js') }}"></script>
     <script src="{{ asset('/js/mapscroll.js') }}"></script>
                 <div class="container-fluid">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
     <!--検索フォーム-->
                 <div class="row">
-               
                     <form action="/search" method="post" class="col-sm-12">
                         @csrf 
                         <div class="input-group">                     

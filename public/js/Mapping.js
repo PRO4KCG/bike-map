@@ -31,6 +31,11 @@ const mapon = () => {//html読み込み時にjsを処理
         } else {
             map.setView([37.985358, 135.753331], 5);
         }
+
+        if(dest[i]["locationName"] == "登録待ち") {
+            continue;
+        }
+
         markers[i] = L.marker([DestLat, DestLon]).addTo(map).on('click', function (e) { clickEvent(e); });
         markers[i].bindPopup(L.popup({
             autoClose: false

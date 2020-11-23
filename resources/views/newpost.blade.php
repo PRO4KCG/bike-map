@@ -3,7 +3,7 @@
 <div class="container">
     <h2>新規投稿画面</h2>
     
-    <form action="/newpost" method="post">
+    <form action="newpost" method="post">
         @csrf
 
         <div class="card-body">
@@ -22,7 +22,7 @@
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
                 <br>
-                 <input type="file" class="form-group" name="image1_file">
+                <input type="file" class="form-group" name="image_file[]" multiple="multiple">
 
             </div>
             <!--ファイル複数選択
@@ -33,6 +33,7 @@
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCentered">投稿</button>
         </div>
+
 
         <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -45,10 +46,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="submit" class="btn btn-primary"> <a class="btn-primary" href="{{ url('/postscreen') }}">投稿</button></a>
+                        <button type="submit" class="btn btn-primary"> <a class="btn-primary">投稿</button></a>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+        </form>
     @endsection
