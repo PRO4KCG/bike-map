@@ -40,3 +40,6 @@ Route::get('/mail', 'PagesController@getMail');
 //新規投稿画面を表示
 Route::get('/newpost', 'PagesController@getNewpost');
 Route::post('/newpost', 'PagesController@postNewpost');
+
+//投稿画面の編集ページ
+Route::get('/postediting', 'PagesController@getPostediting');
