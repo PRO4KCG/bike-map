@@ -1,7 +1,10 @@
 @extends('layout.common')
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{ asset('css/postscreen.css') }}">
+</head>
 <div class="container">
-    <h2>新規投稿画面</h2>
+    <h2>投稿内容編集</h2>
     
     <form action="/newpost" method="post">
         @csrf
@@ -21,10 +24,16 @@
             <div class="form-group">
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
-                <br>
-                 <input type="file" class="form-group" name="image1_file">
+
+                <div class="text-center blank">
+                <img src="https://placehold.jp/320x240.png">
+                <img src="https://placehold.jp/320x240.png">
+                <img src="https://placehold.jp/320x240.png">
+                </div>
+                 <!--ファイルを選択--><input type="file" class="form-group" name="image1_file">
 
             </div>
+           
             <!--ファイル複数選択
             <input type="file" class="form-control" name="image1_file[]" multiple="multiple">
                             -->

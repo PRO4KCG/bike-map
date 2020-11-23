@@ -52,7 +52,7 @@
                     <li class="list-group-item">
                         <span class="badge badge-light">
                             <h4>バイク画像</h4>
-                        </span>*3枚まで
+                        </span>
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -63,33 +63,10 @@
                                         <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}"  onerror="this.onerror = null; this.src='';">
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        画像2
-                                    </button>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <img src="/storage/img/{{ Auth::user()->favBikeImage2 }}"   onerror="this.onerror = null; this.src='';">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        画像3
-                                    </button>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <img src="/storage/img/{{ Auth::user()->favBikeImage3 }}"  alt onerror="this.onerror = null; this.src='';">
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
-                        <!--
-                        <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}">
-                        <img src="/storage/img/{{ Auth::user()->favBikeImage2 }}">
-                        <img src="/storage/img/{{ Auth::user()->favBikeImage3 }}">
-                    -->
+
                     </li>
                     <!-- バイク投稿フォーム-->
                     <div class="card-body">
@@ -170,7 +147,7 @@
                                     <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
                                     <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i>  <span>{{ $post->rating }}</span></button>
                                     <!--<button type="submit" class="card-link btn btn-primary float-right" href="{{ url('/postediting') }}">編集</button>-->
-                                    <a class="card-link btn btn-primary float-right" href="{{ url('/postediting') }}">編集</button>
+                                    <a href="{{ url('/postediting') }}"><button class="card-link btn btn-primary float-right">編集</button></a>
                         </div>
                     </li>
                     @endforeach
