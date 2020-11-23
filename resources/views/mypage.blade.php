@@ -169,9 +169,8 @@
                                     <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
                                     <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
                                     <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i>  <span>{{ $post->rating }}</span></button>
-                                        <button type="submit" class="card-link btn btn-primary float-right">編集</button>
-                                     
-                                           
+                                    <!--<button type="submit" class="card-link btn btn-primary float-right" href="{{ url('/postediting') }}">編集</button>-->
+                                    <a class="card-link btn btn-primary float-right" href="{{ url('/postediting') }}">編集</button>
                         </div>
                     </li>
                     @endforeach

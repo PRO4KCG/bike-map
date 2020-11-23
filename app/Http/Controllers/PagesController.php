@@ -151,4 +151,10 @@ class PagesController extends Controller
     }
     return view('newpost');
   }
+
+  //マイページのユーザー投稿編集画面のget
+  public function getPostediting()
+  {
+    return view('postediting');
+  }
 }
