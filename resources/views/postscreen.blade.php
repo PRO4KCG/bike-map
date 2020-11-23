@@ -1,19 +1,20 @@
 @extends('layout.common')
 
 @section('content')
+
 <head>
     <link rel="stylesheet" href="{{ asset('css/postscreen.css') }}">
 </head>
 <div class="container">
     <div class="card">
-         <div class="card-body">
-    <h2>ユーザー投稿</h2>
-     
-   <p> <a href="{{ url('/newpost') }}"><button type="button" class="btn btn-primary ">投稿画面</button></a></p>
+        <div class="card-body">
+            <h2>ユーザー投稿</h2>
 
-</div>
-   </div>
-   <!--
+            <p> <a href="{{ url('/newpost') }}"><button type="button" class="btn btn-primary ">投稿画面</button></a></p>
+
+        </div>
+    </div>
+    <!--
     <div class="card">
     
   
@@ -42,24 +43,28 @@
         </div>
     </div>-->
 
-    <div class="card mb-3" style="max-width: 900px;">
-    @foreach ($postResults as $post)
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="https://placehold.jp/320x240.png" class="card-img">
+    <div class="card">
+        @foreach ($postResults as $post)
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="https://placehold.jp/320x240.png" class="card-img">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h4 class="card-title">{{ $post->title }}</h4>
+                    <p class="card-text">{{ $post->comment }}</p>
+                  
+                        <form action="/postscreen" method="post" class="form-inline">
+                            @csrf
+                            <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
+                        </form>
+                   
+                    
+                    
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-      <h4 class="card-title">{{ $post->title }}</h4>
-      <p class="card-text">{{ $post->comment }}</p>
-      <form action="/postscreen" method="post">
-                    @csrf
-                    <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i>  <span>{{ $post->rating }}</span></button>
-                </form>
-      </div>
-    </div>
-  </div>
-  @endforeach
-</div>
 </div>
 @endsection
