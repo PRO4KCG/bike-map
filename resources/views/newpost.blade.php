@@ -3,9 +3,8 @@
 <div class="container">
     <h2>新規投稿画面</h2>
     
-    <form action="newpost" method="post">
+    <form action="postscreen" method="post" enctype="multipart/form-data">
         @csrf
-
         <div class="card-body">
             <!--タイトルフォーム-->
             <div class="form-group">
@@ -22,8 +21,7 @@
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
                 <br>
-                <input type="file" class="form-group" name="image_file[]" multiple="multiple">
-
+                <input type="file" class="form-group" name="post_images[]" multiple>
             </div>
             <!--ファイル複数選択
             <input type="file" class="form-control" name="image1_file[]" multiple="multiple">
