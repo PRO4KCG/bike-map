@@ -24,7 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //mypageを表示
 Route::get('/mypage', 'PagesController@getMypage');
 Route::post('/mypage', 'PagesController@postMypage');
-Route::delete('/mypage', 'PagesController@deleteMypage');//投稿内容の削除
+Route::delete('/mypage', 'PagesController@deleteMypage'); //投稿内容の削除
+Route::put('/mypage', 'PagesController@putMypage'); //投稿内容の削除
 
 //searchを表示
 Route::post('/search', 'PagesController@postSearch');
@@ -33,7 +34,7 @@ Route::get('/search/{id}', 'PagesController@getSearch');
 //postscreenを表示
 Route::get('/postscreen', 'PagesController@getPostscreen');
 Route::post('/postscreen', 'PagesController@postPostscreen');
-Route::patch('/postscreen', 'PagesController@patchPostscreen');//いいね機能
+Route::patch('/postscreen', 'PagesController@patchPostscreen'); //いいね機能
 
 //mailを表示
 Route::get('/mail', 'PagesController@getMail');
