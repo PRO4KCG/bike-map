@@ -48,14 +48,22 @@
         <div class="row no-gutters">
             <div class="col-md-4">
                 @isset($post->images1)
-                    <img src="/storage/img/{{ $post->images1 }}" >
+                <div class="text-center">
+                    <img src="/storage/img/{{ $post->images1 }}" class="img-fluid">
+                    </div>
                 @endisset
                 @empty($post->images1)
-                    <img src="https://placehold.jp/320x240.png" >
+                <div class="text-center">
+                    <img src="https://placehold.jp/320x240.png" class="img-fluid">
+                    </div>
                 @endempty
             </div>
             <div class="col-md-8">
                 <div class="card-body">
+                    <span>userID</span>
+                    <span>投稿日時：〇〇〇</span>
+                    <br>
+                    <span>場所名</span>
                     <h4 class="card-title">{{ $post->title }}</h4>
                     <p class="card-text">{{ $post->comment }}</p>
                   
@@ -64,9 +72,6 @@
                             @method('patch')
                             <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
                         </form>
-                   
-                    
-                    
                 </div>
             </div>
         </div>

@@ -19,16 +19,15 @@
                 <div class="card-header">ログイン中</div>
 
                 <div class="card-body">
-                 
+                 <div class="text-center">
                 <div class="btn btn-danger">
-                    {{ __('ログアウト1') }}
+                    {{ __('ログアウト') }}
                 </div>
-                <div class="btn btn-danger offset-3">
-                    {{ __('ログアウト2') }}
+                
+                <div class="btn btn-danger">
+                    {{ __('アカウント削除') }}
                 </div>
-                 
-
-
+                </div>
                 </div>
                 
                 
