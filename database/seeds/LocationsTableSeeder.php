@@ -149,13 +149,13 @@ class LocationsTableSeeder extends Seeder
 			'latitude' => 40.640158,
 			'longitude' => 140.261623,
 		]);
-	 
- 
 
-		DB::table('locations') -> insert([
+
+
+		DB::table('locations')->insert([
 			'locationName' => '六甲山',
 			'latitude' => 34.778023,
-			'longtitude' => 135.263724,
+			'longitude' => 135.263724,
 		]);
 	}
 }
