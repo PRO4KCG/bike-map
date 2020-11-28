@@ -33,34 +33,87 @@ class PagesController extends Controller
     $postResults = Favoriteloc::where('id', Auth::id())->get();
     $count = 1;
     $images = $request->file('images');
-    dd($images);
-    if(count($images) > 3){
+    //dd($images);
+    if (count($images) > 3) {
       return redirect('mypage')->with('status', '画像は3枚まで選択できます');
     }
     foreach ($images as $img) {
       //dd('favBikeImage'.$count);
-    
+
       $path1 = $img->store('public/img');
-      $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, null, function($constraint)
-        {
-          $constraint->aspectRatio();
-        }
-        )->save(storage_path('app/public/img/' . basename($path1)));
+      $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, null, function ($constraint) {
+        $constraint->aspectRatio();
+      })->save(storage_path('app/public/img/' . basename($path1)));
       User::where('id', Auth::id())
         ->update(
           [
-            'favBikeImage'.$count => basename($path1)
+            'favBikeImage' . $count => basename($path1)
           ]
         );
-        $count++;
+      $count++;
     }
     return view('mypage', compact('postResults'));
   }
 
-  public function deleteMypage()
+  public function deleteMypage(Request $request)
   {
-    dd("OK");
-    return view('mypage');
+    $fli = $request->input('fli');
+    Favoriteloc::where('favLocID', $fli)->delete();
+    return redirect()->action(
+      'PagesController@getMypage',
+    );
+  }
+
+  public function putMypage(Request $request)
+  {
+    $all = PostRequest::all();
+
+    if (!isset($all["name"]) && !isset($all["email"])) {
+      return redirect('mypage')->with('status', '名前とメールアドレスの入力は必須です');
+    }
+
+    if (isset($all["name"])) {
+      $name = $all["name"];
+    } else {
+      $name = Auth::user()->name;
+      return redirect('mypage')->with('status', '名前の入力は必須です');
+    }
+
+    if (isset($all["email"])) {
+      $email = $all["email"];
+    } else {
+      $email = Auth::user()->email;
+      return redirect('mypage')->with('status', 'メールアドレスの入力は必須です');
+    }
+
+    $bikeName = $all["bikeName"];
+
+    $image = $request->file('image');
+    /*
+    \Debugbar::info('$name=' . $name);
+    \Debugbar::info('$email=' . $email);
+    \Debugbar::info('$bikeName=' . $bikeName);
+    dd($image);
+    */
+    if (isset($image)) {
+      $path1 = $image->store('public/img');
+      InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, null, function ($constraint) {
+        $constraint->aspectRatio();
+      })->save(storage_path('app/public/img/' . basename($path1)));
+    } else {
+      $path1 = Auth::user()->favBikeImage1;
+    }
+    User::where('id', Auth::id())->update(
+      [
+        'name' => $name,
+        'email' => $email,
+        'bikeName' => $bikeName,
+        'favBikeImage1' => basename($path1)
+      ]
+    );
+    return redirect()->action(
+      'PagesController@getMypage',
+    );
   }
 
   public function getSearch($id)
@@ -81,7 +134,7 @@ class PagesController extends Controller
         'PagesController@getSearch',
         ['id' => $result[0]['locationID']]
       );
-    }else if(count($result) == 0){
+    } else if (count($result) == 0) {
       return redirect('/')->with('status', '検索結果がありません');
     } else {
       return view('search', compact("result"));
@@ -99,30 +152,28 @@ class PagesController extends Controller
   public function postPostscreen(Request $request)
   {
     $all = PostRequest::all();
-    
+
     $images = $request->file('post_images');
     //$images = $all["images"];
     //dd($images);
-    
+
     $count = 0;
     $img_arr = [];
-    if(count($images) > 3){
-      return redirect('mypage')->with('status', '画像は3枚まで選択できます');
+    if (count($images) > 3) {
+      return redirect('newpost')->with('status', '画像は3枚まで選択できます');
     }
     foreach ($images as $img) {
       //dd('favBikeImage'.$count);
-    
+
       $path1 = $img->store('public/img');
-      $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(320, null, function($constraint)
-        {
-          $constraint->aspectRatio();
-        }
-        )->save(storage_path('app/public/img/' . basename($path1)));
-            //'favBikeImage'.$count => basename($path1)
-            array_push($img_arr, basename($path1));
-        //$count++;
+      $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(320, null, function ($constraint) {
+        $constraint->aspectRatio();
+      })->save(storage_path('app/public/img/' . basename($path1)));
+      //'favBikeImage'.$count => basename($path1)
+      array_push($img_arr, basename($path1));
+      //$count++;
     }
-    
+
     $result = Location::Where('locationName', $all["Spotname"])->get()->toArray();
     if (count($result) == 0) {
       $locId = 1;
@@ -142,9 +193,10 @@ class PagesController extends Controller
       'updated_at' => now()
     ]);
 
+    $lastFavlocID = Favoriteloc::where('id', Auth::id())->orderBy('favLocID', 'desc')->value('favLocID');
     if (count($result) == 0) {
       Temporarily::insert([
-        'favLocID' => FavoriteLoc::count(),
+        'favLocID' => $lastFavlocID,
         'name' => $all["Spotname"],
         'created_at' => now(),
         'updated_at' => now()
@@ -155,7 +207,7 @@ class PagesController extends Controller
     );
   }
 
-    //postscreenを表示(patch)
+  //postscreenを表示(patch)
   public function patchPostscreen(Request $request)
   {
     $like = $request->input('like');

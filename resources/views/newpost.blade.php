@@ -1,8 +1,13 @@
 @extends('layout.common')
 @section('content')
 <div class="container">
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
     <h2>新規投稿画面</h2>
-    
+
     <form action="postscreen" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
@@ -21,13 +26,13 @@
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
                 <br>
-                <input type="file" class="form-group" name="post_images[]" multiple>
+                <input type="file" class="form-group" name="post_images[]" accept="image/gif,image/jpeg,image/png,image/webp" multiple>
             </div>
             <!--ファイル複数選択
             <input type="file" class="form-control" name="image1_file[]" multiple="multiple">
                             -->
 
-           
+
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCentered">投稿</button>
         </div>
@@ -49,5 +54,5 @@
                 </div>
             </div>
         </div>
-        </form>
+    </form>
     @endsection
