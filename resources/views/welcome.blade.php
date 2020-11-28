@@ -2,6 +2,8 @@
     @section('content')
     <head>
     <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
+    <!--ファビコン-->
+    <link rel="shortcut icon" href="{{ asset('/favicon-96x96.ico') }}">
     </head>
     <script>
         let tr = @json($topResult);
