@@ -1,6 +1,10 @@
 @extends('layout.common')
 
 @section('content')
+<head>
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+</head>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -40,7 +44,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}<br><span class="pass-mess">(パスワードは8文字以上)<span></label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
