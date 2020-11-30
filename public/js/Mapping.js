@@ -32,7 +32,7 @@ const mapon = () => {//html読み込み時にjsを処理
             map.setView([37.985358, 135.753331], 5);
         }
 
-        if(dest[i]["locationName"] == "登録待ち") {
+        if (dest[i]["locationName"] == "登録待ち") {
             continue;
         }
 
@@ -94,12 +94,46 @@ const mapon = () => {//html読み込み時にjsを処理
                     // HTMLでの表示 
                     weatherHTML.innerHTML += '<div class="day">' + month + '月' + day + '日<br>' +
                         weat + '<br>' +
-                        "<img src='http://openweathermap.org/img/wn/" + icon + "@2x.png'></img></div>";
+                        "<img src='https://openweathermap.org/img/wn/" + icon + "@2x.png'></img></div>";
 
                 }
             })
-    }
+        map.on("locationerror", onLocationError);
+        map.on("locationfound", onLocationFound);
+        map.locate({
+            setView: "true"
+        });
+        function onLocationError(e) {
+            //alert(e.message);
+        }
 
+        function onLocationFound(e) {
+            /*
+            console.log("e.latlng : " + e.latlng);
+            console.log("e.latlng.lat : " + e.latlng.lat);
+            console.log("e.latlng.lng : " + e.latlng.lng);
+            */
+            LocateMarker = L.marker(e.latlng).addTo(map);
+            MeLocationLat = Number(e.latlng.lat);
+            MeLocationLon = Number(e.latlng.lng);
+
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(MeLocationLat, MeLocationLon),
+                    L.latLng(DestLat, DestLon)
+                ],
+                routeWhileDragging: true
+            }).addTo(map);
+            map.setView([(DestLat + MeLocationLat) / 2, (DestLon + MeLocationLon) / 2], 6);
+        }
+        /*
+        console.log('MeLocationLat : ' + MeLocationLat);
+        console.log('MeLocationLon : ' + MeLocationLon);
+        console.log('DestLat : ' + DestLat);
+        console.log('DestLon : ' + DestLon);
+        */
+    }
+    /*
     //ナビ開始
     NaviStart.onclick = () => {
         L.Routing.control({
@@ -130,6 +164,7 @@ const mapon = () => {//html読み込み時にjsを処理
         MeLocationLat = Number(e.latlng.lat);
         MeLocationLon = Number(e.latlng.lng);
     }
+    */
 
 
 

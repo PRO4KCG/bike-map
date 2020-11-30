@@ -50,28 +50,28 @@
                 @isset($post->images1)
                 <div class="text-center">
                     <img src="/storage/img/{{ $post->images1 }}" class="img-fluid">
-                    </div>
+                </div>
                 @endisset
                 @empty($post->images1)
                 <div class="text-center">
                     <img src="https://placehold.jp/320x240.png" class="img-fluid">
-                    </div>
+                </div>
                 @endempty
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <span>userID</span>
-                    <span>投稿日時：〇〇〇</span>
+                    <span>{{ $post->name }}</span>
+                    <span>投稿日時：{{ $post->created_at }}</span>
                     <br>
-                    <span>場所名</span>
+                    <span>{{ $post->locationName }}</span>
                     <h4 class="card-title">{{ $post->title }}</h4>
                     <p class="card-text">{{ $post->comment }}</p>
-                  
-                        <form action="/postscreen" method="post" class="form-inline">
-                            @csrf
-                            @method('patch')
-                            <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
-                        </form>
+
+                    <form action="/postscreen" method="post" class="form-inline">
+                        @csrf
+                        @method('patch')
+                        <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
+                    </form>
                 </div>
             </div>
         </div>
