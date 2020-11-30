@@ -16,7 +16,7 @@
     </div>
     <!--
     <div class="card">
-    
+   
   
         <div class="card-body">
             @foreach ($postResults as $post)
@@ -54,7 +54,7 @@
                 @endisset
                 @empty($post->images1)
                 <div class="text-center">
-                    <img src="https://placehold.jp/320x240.png" class="img-fluid">
+                    <img src="http://placehold.jp/320x240.png?text=NO%20IMAGE" class="img-fluid">
                 </div>
                 @endempty
             </div>
@@ -63,7 +63,11 @@
                     <span>{{ $post->name }}</span>
                     <span>投稿日時：{{ $post->created_at }}</span>
                     <br>
-                    <span>{{ $post->locationName }}</span>
+                    @if($post->locationName == "登録待ち")
+                        <span>{{ $post->locationName}}({{$post->tmpName}})</span>
+                    @else
+                        <span>{{ $post->locationName }}</span>
+                    @endif
                     <h4 class="card-title">{{ $post->title }}</h4>
                     <p class="card-text">{{ $post->comment }}</p>
 
