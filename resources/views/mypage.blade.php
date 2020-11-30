@@ -160,13 +160,13 @@
 
                             <br>
 
-
+                            
                             <div class="col-4"></div>
                             <form action="mypage" method="post">
                                 @csrf
                                 @method('delete')
                                 <!--<div class="fli" value="{{ $post->favLocID }}" name="fli"></div>-->
-                                <button type="submit" class="card-link btn btn-danger float-right" value="{{ $post->favLocID }}" name="fli"data-toggle="modal" data-target="#exampleModalCentered">削除</button>
+                                <button type="button" class="card-link btn btn-danger float-right" data-toggle="modal" data-target="#exampleModalCentered">削除</button>
                             </form>
 
                             <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
@@ -191,7 +191,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
-                        <button type="submit" class="btn btn-danger"> はい</button></a>
+                        <button type="submit" class="btn btn-danger" value="{{ $post->favLocID }}" name="fli"data-toggle="modal" data-target="#exampleModalCentered"> はい</button></a>
                     </div>
                 </div>
             </div>
