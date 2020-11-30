@@ -158,10 +158,13 @@ class PagesController extends Controller
       'favoritelocs.favLocID',
       'favoritelocs.rating',
       'users.name',
-      'locations.locationName'
+      'locations.locationName',
+      'temporarilies.name as tmpName'
     )
       ->join('users', 'favoritelocs.id', '=', 'users.id')
       ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
+      ->leftJoin('temporarilies', 'favoritelocs.favLocID', '=', 'temporarilies.favLocID')
+      ->orderBy('favLocID', 'desc')
       ->get();
     //dd($postResults);
     return view('postscreen', compact('postResults'));
@@ -169,26 +172,36 @@ class PagesController extends Controller
 
   public function postPostscreen(Request $request)
   {
+    //http://placehold.jp/320x240.png?text=NO%20IMAGE
     $all = PostRequest::all();
     $images = $request->file('post_images');
     //$images = $all["images"];
     //dd($images);
 
-    $count = 0;
-    $img_arr = [];
-    if (count($images) > 3) {
-      return redirect('newpost')->with('status', '画像は3枚まで選択できます');
-    }
-    foreach ($images as $img) {
-      //dd('favBikeImage'.$count);
+    if(isset($images)) {
+      $img_arr = [];
+      if (count($images) > 3) {
+        return redirect('newpost')->with('status', '画像は3枚まで選択できます');
+      }
+      foreach ($images as $img) {
+        //dd('favBikeImage'.$count);
 
-      $path1 = $img->store('public/img');
-      $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(320, null, function ($constraint) {
-        $constraint->aspectRatio();
-      })->save(storage_path('app/public/img/' . basename($path1)));
-      //'favBikeImage'.$count => basename($path1)
-      array_push($img_arr, basename($path1));
-      //$count++;
+        $path1 = $img->store('public/img');
+        $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(320, null, function ($constraint) {
+          $constraint->aspectRatio();
+        })->save(storage_path('app/public/img/' . basename($path1)));
+        //'favBikeImage'.$count => basename($path1)
+        array_push($img_arr, basename($path1));
+        //$count++;
+      }
+
+      if(count($img_arr) < 3) {
+        for($i = 3; $i >= count($img_arr); $i--){
+          array_push($img_arr, null);
+        }
+      }
+    }else {
+      $img_arr = [null, null, null];
     }
 
     $result = Location::Where('locationName', $all["Spotname"])->get()->toArray();
@@ -254,6 +267,9 @@ class PagesController extends Controller
   //マイページのユーザー投稿編集画面のget
   public function getPostediting()
   {
+    $fli = 3; //(仮)
+    $results = Favoriteloc::Where('favLocID', $fli)->get();
+    //dd($results);
     return view('postediting');
   }
 }
