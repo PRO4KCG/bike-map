@@ -1,0 +1,14 @@
+/*一定量も文字を非表示*/
+.word-break{
+	 max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.custom-file {
+  overflow: hidden;
+}
+.custom-file-label {
+  white-space: nowrap;
+}
+

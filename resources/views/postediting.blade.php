@@ -2,6 +2,7 @@
 @section('content')
 <head>
     <link rel="stylesheet" href="{{ asset('css/postscreen.css') }}">
+   
 </head>
 <div class="container">
     <h2>投稿内容編集</h2>
@@ -24,13 +25,40 @@
             <div class="form-group">
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
-
+                <!--
                 <div class="text-center blank">
-                <img src="https://placehold.jp/320x240.png">
-                <img src="https://placehold.jp/320x240.png">
-                <img src="https://placehold.jp/320x240.png">
+                <img class="img-fluid" src="https://placehold.jp/320x240.png">
+                <img class="img-fluid" src="https://placehold.jp/320x240.png">
+                <img class="img-fluid" src="https://placehold.jp/320x240.png">
                 </div>
-                 <!--ファイルを選択--><input type="file" class="form-group" name="image1_file">
+            -->
+            <div class="d-sm-flex p-3">
+             <div class="img-wrap col-sm-4">
+            <button class="close">&times;</button>
+                <img class="img-fluid " src="https://placehold.jp/320x240.png">
+                </div>
+
+            <div class="img-wrap col-sm-4">
+            <button class="close">&times;</button>
+                <img class="img-fluid" src="https://placehold.jp/320x240.png">
+                     </div> 
+
+             <div class="img-wrap col-sm-4">
+            <button class="close">&times;</button>
+                <img class="img-fluid" src="https://placehold.jp/320x240.png">
+                     </div>
+                     </div>
+         <style>
+         .img-wrap {
+
+}
+.img-wrap .close {
+
+}
+    </style>
+              <label>
+                 <!--ファイルを選択--><input type="file"  class="form-control-file file_upload" name="image1_file">
+                </label>
 
             </div>
            
