@@ -176,7 +176,7 @@
                             <a href="{{ url('/postediting') }}"><button class="card-link btn btn-primary float-right">編集</button></a>
                         </div>
                 </li>
-                @endforeach
+                
             </ul>
         </div>
     </div>
@@ -196,6 +196,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
     <!--
          バイク投稿フォーム 
         <form action="mypage" method="post" enctype="multipart/form-data">
