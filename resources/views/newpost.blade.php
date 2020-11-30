@@ -1,5 +1,8 @@
 @extends('layout.common')
 @section('content')
+<head>
+     <link rel="stylesheet" href="{{ asset('css/postscreen.css') }}">
+</head>
 <div class="container">
     @if (session('status'))
     <div class="alert alert-success">
@@ -26,7 +29,7 @@
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
                 <br>
-                <input type="file" class="form-group" name="post_images[]" accept="image/gif,image/jpeg,image/png,image/webp" multiple>
+                <input type="file" class="form-group file_upload" name="post_images[]" accept="image/gif,image/jpeg,image/png,image/webp" multiple>
             </div>
             <!--ファイル複数選択
             <input type="file" class="form-control" name="image1_file[]" multiple="multiple">

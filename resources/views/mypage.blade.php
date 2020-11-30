@@ -8,6 +8,12 @@
 
 //Unable to guess the MIME type as no guessers are available (have you enabled the php_fileinfo extension?).
 ?>
+<head>
+     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+    　
+</head>
+<script src="{{ asset('/js/mypage.js') }}"></script>
+
 <div class="container">
     @if (session('status'))
     <div class="alert alert-success">
@@ -79,8 +85,26 @@
                             <!--ファイル複数選択
                             <input type="file" class="form-control" name="image1_file[]" multiple="multiple">
                         -->
-
-                            <input type="file" class="form-control" name="image" accept="image/gif,image/jpeg,image/png,image/webp">
+                        <!--
+                        <label>
+                            <div class="word-break">
+                                <input type="file" class="form-control" name="image" accept="image/gif,image/jpeg,image/png,image/webp">
+                            </div>
+                            </label>
+                        -->
+                           
+                        
+                        <div class="custom-file">
+                             <input type="file" class="custom-file-input" id="customFile"name="image" accept="image/gif,image/jpeg,image/png,image/webp">
+                            <label class="custom-file-label" for="customFile" data-browse="参照" name="image">ファイル選択...</label>
+                        </div>
+                        
+                         <script>
+                                $('.custom-file-input').on('change',function(){
+                                $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+                                })
+                        </script>
+                   
                             <!--
                             <input type="file" class="form-control" name="image2_file">
                             <input type="file" class="form-control" name="image3_file">
@@ -142,7 +166,7 @@
                                 @csrf
                                 @method('delete')
                                 <!--<div class="fli" value="{{ $post->favLocID }}" name="fli"></div>-->
-                                <button type="submit" class="card-link btn btn-danger float-right" value="{{ $post->favLocID }}" name="fli">削除</button>
+                                <button type="submit" class="card-link btn btn-danger float-right" value="{{ $post->favLocID }}" name="fli"data-toggle="modal" data-target="#exampleModalCentered">削除</button>
                             </form>
 
                             <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
@@ -156,6 +180,22 @@
             </ul>
         </div>
     </div>
+    <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenteredLabel">投稿を削除しますか？</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+                        <button type="submit" class="btn btn-danger"> はい</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     <!--
          バイク投稿フォーム 
         <form action="mypage" method="post" enctype="multipart/form-data">
