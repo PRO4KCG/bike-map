@@ -25,27 +25,24 @@
             <div class="form-group">
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
-                <!--
-                <div class="text-center blank">
-                <img class="img-fluid" src="https://placehold.jp/320x240.png">
-                <img class="img-fluid" src="https://placehold.jp/320x240.png">
-                <img class="img-fluid" src="https://placehold.jp/320x240.png">
-                </div>
-            -->
+
             <div class="d-sm-flex p-3">
              <div class="img-wrap col-sm-4">
             <button class="close">&times;</button>
                 <img class="img-fluid " src="https://placehold.jp/320x240.png">
+                        <input type="file" class="form-control-file" id="inputFile">
                 </div>
 
             <div class="img-wrap col-sm-4">
             <button class="close">&times;</button>
                 <img class="img-fluid" src="https://placehold.jp/320x240.png">
+                <input type="file" class="form-control-file" id="inputFile">
                      </div> 
 
              <div class="img-wrap col-sm-4">
             <button class="close">&times;</button>
                 <img class="img-fluid" src="https://placehold.jp/320x240.png">
+                <input type="file" class="form-control-file" id="inputFile">
                      </div>
                      </div>
          <style>
@@ -57,7 +54,7 @@
 }
     </style>
               <label>
-                 <!--ファイルを選択--><input type="file"  class="form-control-file file_upload" name="image1_file">
+                 <!--ファイルを選択<input type="file"  class="form-control-file file_upload" name="image1_file">-->
                 </label>
 
             </div>
