@@ -18,18 +18,24 @@
                 </div>-->
                 <div class="card-header">ログイン中</div>
 
-                <div class="card-body">
-                 <div class="text-center">
-                <div class="btn btn-danger">
-                    {{ __('ログアウト') }}
-                </div>
+        <div class="card-body">
+            <div class="d-flex">
+                <a class="dropdown-item " href="{{ route('logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    <div class="btn btn-danger">
+                        {{ __('ログアウト') }}
+                    </div>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                </form>
                 
                 <div class="btn btn-danger">
                     {{ __('アカウント削除') }}
                 </div>
                 </div>
                 </div>
-                
+            </div>
                 
             </div>
         </div>
