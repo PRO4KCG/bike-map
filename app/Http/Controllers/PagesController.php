@@ -58,6 +58,10 @@ class PagesController extends Controller
   public function deleteMypage(Request $request)
   {
     $fli = $request->input('fli');
+    $locId = Favoriteloc::where('favLocID', $fli)->value('locationID');
+    if ($locId == 1) {
+      Temporarily::where('favLocID', $fli)->delete();
+    }
     Favoriteloc::where('favLocID', $fli)->delete();
     return redirect()->action(
       'PagesController@getMypage',
@@ -145,14 +149,27 @@ class PagesController extends Controller
   //postscreenを表示
   public function getPostscreen()
   {
-    $postResults = Favoriteloc::get();
+    $postResults = Favoriteloc::select(
+      'favoritelocs.created_at',
+      'favoritelocs.images1',
+      'favoritelocs.created_at',
+      'favoritelocs.title',
+      'favoritelocs.comment',
+      'favoritelocs.favLocID',
+      'favoritelocs.rating',
+      'users.name',
+      'locations.locationName'
+    )
+      ->join('users', 'favoritelocs.id', '=', 'users.id')
+      ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
+      ->get();
+    //dd($postResults);
     return view('postscreen', compact('postResults'));
   }
 
   public function postPostscreen(Request $request)
   {
     $all = PostRequest::all();
-
     $images = $request->file('post_images');
     //$images = $all["images"];
     //dd($images);
