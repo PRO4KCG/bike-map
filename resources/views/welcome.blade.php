@@ -3,8 +3,6 @@
 
     <head>
         <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-        <!--ファビコン-->
-        <link rel="shortcut icon" href="{{ asset('/favicon-96x96.ico') }}">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -48,7 +46,7 @@
                 </div>
             </form>
         </div>
-        <br>
+       
         <div class="map">
             <div id="mapid" style="width: 100%;height: 600px;"></div>
         </div>

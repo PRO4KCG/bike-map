@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <!-- ファビコン表示 -->
+        <link rel="shortcut icon" href="{{ asset('/favicon-96x96.ico') }}">
         <title>Bike-Map</title>
 
         <!-- css -->
@@ -15,11 +16,7 @@
         <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
        
-        
-
         <!-- js -->
-        
-
         <!--<script src="{{ asset('/js/topmap.js') }}"></script>-->
         
         <!--https://map.yahooapis.jp/search/local/V1/localSearch-->
