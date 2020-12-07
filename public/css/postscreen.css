@@ -1,0 +1,12 @@
+form{
+    margin-bottom: 15%;
+}
+/*空白のクラス*/
+.blank{
+    margin-bottom: 5%;
+    margin-top: 10%;
+}
+
+#inputFile{
+    margin-top: 10px;
+}

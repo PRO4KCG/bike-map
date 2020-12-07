@@ -1,89 +1,89 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layout.common')
+
+@section('content')
+
 <head>
-  <head>
-    <meta charset="utf-8">
-    <title>postscreen</title>
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Bootstrap JavaScript-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-  <div class="container">
-        <h2>ユーザー投稿</h2>
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">タイトル</h4>
-                        <p class="card-text">概要表示</p>
-                            <a href="#" class="card-link">評価ボタン</a>
+    <link rel="stylesheet" href="{{ asset('css/postscreen.css') }}">
+</head>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h2>ユーザー投稿</h2>
+
+            <p> <a href="{{ url('/newpost') }}"><button type="button" class="btn btn-primary ">投稿画面</button></a></p>
+
+        </div>
+    </div>
+    <!--
+    <div class="card">
+   
+  
+        <div class="card-body">
+            @foreach ($postResults as $post)
+            
+            <li class="list-group-item">
+            <div class=""> 
+                <img src="http://placehold.jp/300x200.png">
                 </div>
-            </div>
+               
+                <img class="card-img-top" src="http://placehold.jp/300x200.png" alt="Card image cap">
+                <h4 class="card-title">{{ $post->title }}</h4>
+                <p class="card-text">{{ $post->comment }}</p>
+              
+               
+                <form action="/postscreen" method="post">
+                    @csrf
+                    <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i>  <span>{{ $post->rating }}</span></button>
+                </form>
 
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">タイトル</h4>
-                        <p class="card-text">概要表示</p>
-                            <a href="#" class="card-link">評価ボタン</a>
+              
+            @endforeach
+            </li>
+
+        </div>
+    </div>-->
+
+    <div class="card">
+        @foreach ($postResults as $post)
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                @isset($post->images1)
+                <div class="text-center">
+                    <a href="{{ url('/postscreen/'.$post->favLocID) }}">
+                        <img src="/storage/img/{{ $post->images1 }}" class="img-fluid">
+                    </a>
                 </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">タイトル</h4>
-                        <p class="card-text">概要表示</p>
-                            <a href="#" class="card-link">評価ボタン</a>
+                @endisset
+                @empty($post->images1)
+                <div class="text-center">
+                    <a href="{{ url('/postscreen/'.$post->favLocID) }}">
+                        <img src="http://placehold.jp/320x240.png?text=NO%20IMAGE" class="img-fluid">
+                    </a>
                 </div>
+                @endempty
             </div>
-
-            <div class="card">
+            <div class="col-md-8">
                 <div class="card-body">
-                    <h4 class="card-title">タイトル</h4>
-                        <p class="card-text">概要表示</p>
-                            <a href="#" class="card-link">評価ボタン</a>
-                </div>
-            </div>
+                    <span>{{ $post->name }}</span>
+                    <span>投稿日時：{{ $post->created_at }}</span>
+                    <br>
+                    @if($post->locationName == "登録待ち")
+                    <span>{{ $post->locationName}}({{$post->tmpName}})</span>
+                    @else
+                    <span>{{ $post->locationName }}</span>
+                    @endif
+                    <h4 class="card-title">{{ $post->title }}</h4>
+                    <p class="card-text">{{ $post->comment }}</p>
 
-        <!-- 1.モーダル表示のためのボタン --><br>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modal-example">
-            モーダルダイアログ表示
-        </button>
-
-        <!-- 2.モーダルの配置 -->
-        <div class="modal" id="modal-example" tabindex="1">
-            <div class="modal-dialog">
-
-                <!-- 3.モーダルのコンテンツ -->
-                <div class="modal-content">
-
-                    <!-- 4.モーダルのヘッダ -->
-                    <div class="modal-header">
-                        <h3><label>投稿</label></h3>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-
-                    </div>
-
-                    <!-- 5.モーダルのボディ -->
-                    <div class="modal-body">
-                        <input class="form-control form-control-lg" type="text" placeholder="タイトル"><br>
-                        <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="内容"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- 6.モーダルのフッタ -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                        <button type="button" class="btn btn-primary">保存</button>
-                    </div>
+                    <form action="/postscreen" method="post" class="form-inline">
+                        @csrf
+                        @method('patch')
+                        <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
+                    </form>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
-  </body>
-</html>
+</div>
+@endsection
