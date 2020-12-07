@@ -29,7 +29,12 @@
 
                 <div class="d-sm-flex p-3">
                     <div class="img-wrap col-sm-4">
-                        <button class="close">&times;</button>
+                        <!--下4行ラジオボタン-->
+                       <div class="custom-control custom-checkbox float-right">
+                         <input type="checkbox" class="custom-control-input" id="custom-check-1">
+                         <label class="custom-control-label" for="custom-check-1"></label>
+                         </div>
+
                         @isset($result->images1)
                         <img src="/storage/img/{{ $result->images1 }}" class="img-fluid">
                         @endisset
@@ -40,7 +45,12 @@
                     </div>
 
                     <div class="img-wrap col-sm-4">
-                        <button class="close">&times;</button>
+                        <!--下4行ラジオボタン-->
+                        <div class="custom-control custom-checkbox float-right">
+                         <input type="checkbox" class="custom-control-input" id="custom-check-2">
+                         <label class="custom-control-label" for="custom-check-2"></label>
+                         </div>
+
                         @isset($result->images2)
                         <img src="/storage/img/{{ $result->images2 }}" class="img-fluid">
                         @endisset
@@ -51,7 +61,12 @@
                     </div>
 
                     <div class="img-wrap col-sm-4">
-                        <button class="close">&times;</button>
+                        <!--下4行ラジオボタン-->
+                        <div class="custom-control custom-checkbox float-right">
+                         <input type="checkbox" class="custom-control-input" id="custom-check-3">
+                         <label class="custom-control-label" for="custom-check-3"></label>
+                         </div>
+
                         @isset($result->images3)
                         <img src="/storage/img/{{ $result->images3 }}" class="img-fluid">
                         @endisset
