@@ -201,8 +201,9 @@
                             <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
                             <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
                             <!--<button type="submit" class="card-link btn btn-primary float-right" href="{{ url('/postediting') }}">編集</button>-->
-                            <form action="mypage" method="post" enctype="multipart/form-data">
-                                <button class="card-link btn btn-primary float-right">編集</button>
+                            <form action="/postscreen/{{ $post->favLocID }}/edit" method="post">
+                                @csrf
+                                <button type="submit" class="card-link btn btn-primary float-right">編集</button>
                             </form>
                         </div>
                 </li>

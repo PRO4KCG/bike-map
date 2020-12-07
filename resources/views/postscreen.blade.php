@@ -49,12 +49,16 @@
             <div class="col-md-4">
                 @isset($post->images1)
                 <div class="text-center">
-                    <img src="/storage/img/{{ $post->images1 }}" class="img-fluid">
+                    <a href="{{ url('/postscreen/'.$post->favLocID) }}">
+                        <img src="/storage/img/{{ $post->images1 }}" class="img-fluid">
+                    </a>
                 </div>
                 @endisset
                 @empty($post->images1)
                 <div class="text-center">
-                    <img src="http://placehold.jp/320x240.png?text=NO%20IMAGE" class="img-fluid">
+                    <a href="{{ url('/postscreen/'.$post->favLocID) }}">
+                        <img src="http://placehold.jp/320x240.png?text=NO%20IMAGE" class="img-fluid">
+                    </a>
                 </div>
                 @endempty
             </div>
@@ -64,9 +68,9 @@
                     <span>投稿日時：{{ $post->created_at }}</span>
                     <br>
                     @if($post->locationName == "登録待ち")
-                        <span>{{ $post->locationName}}({{$post->tmpName}})</span>
+                    <span>{{ $post->locationName}}({{$post->tmpName}})</span>
                     @else
-                        <span>{{ $post->locationName }}</span>
+                    <span>{{ $post->locationName }}</span>
                     @endif
                     <h4 class="card-title">{{ $post->title }}</h4>
                     <p class="card-text">{{ $post->comment }}</p>
