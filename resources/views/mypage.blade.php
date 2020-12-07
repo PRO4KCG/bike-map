@@ -8,11 +8,23 @@
 
 //Unable to guess the MIME type as no guessers are available (have you enabled the php_fileinfo extension?).
 ?>
+
 <head>
-     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
     　
 </head>
 <script src="{{ asset('/js/mypage.js') }}"></script>
+
+<script>
+    /* アラートの表示 */
+    function delete_alert(e) {
+        if (!window.confirm('本当に削除しますか？')) {
+            window.alert('キャンセルされました');
+            return false;
+        }
+        document.deleteform.submit();
+    };
+</script>
 
 <div class="container">
     @if (session('status'))
@@ -65,17 +77,15 @@
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        画像1
+                                        画像
                                     </button>
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                         <div class="card-body">
                                             <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}" onerror="this.onerror = null; this.src='';">
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </li>
                         <!-- バイク投稿フォーム-->
                         <div class="card-body">
@@ -85,26 +95,26 @@
                             <!--ファイル複数選択
                             <input type="file" class="form-control" name="image1_file[]" multiple="multiple">
                         -->
-                        <!--
+                            <!--
                         <label>
                             <div class="word-break">
                                 <input type="file" class="form-control" name="image" accept="image/gif,image/jpeg,image/png,image/webp">
                             </div>
                             </label>
                         -->
-                           
-                        
-                        <div class="custom-file">
-                             <input type="file" class="custom-file-input" id="customFile"name="image" accept="image/gif,image/jpeg,image/png,image/webp">
-                            <label class="custom-file-label" for="customFile" data-browse="参照" name="image">ファイル選択...</label>
-                        </div>
-                        
-                         <script>
-                                $('.custom-file-input').on('change',function(){
-                                $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+
+
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="image" accept="image/gif,image/jpeg,image/png,image/webp">
+                                <label class="custom-file-label" for="customFile" data-browse="参照" name="image">ファイル選択...</label>
+                            </div>
+
+                            <script>
+                                $('.custom-file-input').on('change', function() {
+                                    $(this).next('.custom-file-label').html($(this)[0].files[0].name);
                                 })
-                        </script>
-                   
+                            </script>
+
                             <!--
                             <input type="file" class="form-control" name="image2_file">
                             <input type="file" class="form-control" name="image3_file">
@@ -116,7 +126,7 @@
                                 -
                                 -
                                 -
--->
+                            -->
                             <input type="submit" class="btn btn-primary float-right" value="保存">
                 </form>
             </div>
@@ -146,56 +156,60 @@
 
     <!--投稿内容編集-->
     <div class="col-md-5 col-sm-12　">
-        <div class="card" style="width:">
+        <div class="card">
             <div class="card-header badge badge-primary">
                 <h2 class="p-1" style="text-align:center;">投稿内容編集</h2>
             </div>
             <ul class="list-group list-group-flush">
                 @foreach ($postResults as $post)
                 <li class="list-group-item">
-                    <div class="card" style="width:">
+                    <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <div class="card-text">{{ $post->comment }}</div>
 
                             <br>
 
-                            
+
                             <div class="col-4"></div>
-                            <form action="mypage" method="post">
+                            <form action="mypage" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('delete')
                                 <!--<div class="fli" value="{{ $post->favLocID }}" name="fli"></div>-->
-                                <button type="button" class="card-link btn btn-danger float-right" data-toggle="modal" data-target="#exampleModalCentered">削除</button>
+                                <button type="submit" class="card-link btn btn-danger float-right" data-toggle="modal" data-target="#exampleModalCentered" value="{{ $post->favLocID }}" name="fli" onClick="delete_alert(event);return false;">削除</button>
+                                <!--
+                                <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenteredLabel">投稿を削除しますか？</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+                                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCentered">はい</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            -->
                             </form>
 
                             <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
                             <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
                             <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
                             <!--<button type="submit" class="card-link btn btn-primary float-right" href="{{ url('/postediting') }}">編集</button>-->
-                            <a href="{{ url('/postediting') }}"><button class="card-link btn btn-primary float-right">編集</button></a>
+                            <form action="mypage" method="post" enctype="multipart/form-data">
+                                <button class="card-link btn btn-primary float-right">編集</button>
+                            </form>
                         </div>
                 </li>
                 @endforeach
             </ul>
         </div>
     </div>
-    <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenteredLabel">投稿を削除しますか？</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
-                        <button type="submit" class="btn btn-danger" value="{{ $post->favLocID }}" name="fli"data-toggle="modal" data-target="#exampleModalCentered"> はい</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
     <!--
          バイク投稿フォーム 
         <form action="mypage" method="post" enctype="multipart/form-data">
@@ -207,6 +221,5 @@
             <input type="submit" class="btn btn-primary" value="投稿">
         </form>
         -->
-</div>
 </div>
 @endsection
