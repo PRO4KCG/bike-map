@@ -178,7 +178,7 @@ class PagesController extends Controller
     //$images = $all["images"];
     //dd($images);
 
-    if(isset($images)) {
+    if (isset($images)) {
       $img_arr = [];
       if (count($images) > 3) {
         return redirect('newpost')->with('status', '画像は3枚まで選択できます');
@@ -195,12 +195,12 @@ class PagesController extends Controller
         //$count++;
       }
 
-      if(count($img_arr) < 3) {
-        for($i = 3; $i >= count($img_arr); $i--){
+      if (count($img_arr) < 3) {
+        for ($i = 3; $i >= count($img_arr); $i--) {
           array_push($img_arr, null);
         }
       }
-    }else {
+    } else {
       $img_arr = [null, null, null];
     }
 
@@ -264,18 +264,23 @@ class PagesController extends Controller
     return view('newpost');
   }
 
-    //detailspageを表示
-    public function getDetailspage()
-    {
-      return view('detailspage');
-    }
-
-  //マイページのユーザー投稿編集画面のget
-  public function getPostediting()
+  //detailspageを表示
+  public function getDetailspage($id)
   {
-    $fli = 3; //(仮)
+    $fli = $id;
     $results = Favoriteloc::Where('favLocID', $fli)->get();
     //dd($results);
-    return view('postediting');
+    return view('detailspage', compact('results'));
+  }
+
+  //マイページのユーザー投稿編集画面のget
+  public function postPostediting($id)
+  {
+    //dd("OK");
+    $fli = $id;
+    $results = Favoriteloc::Where('favLocID', $fli)
+      ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')->get();
+    //dd($results);
+    return view('postediting', compact('results'));
   }
 }

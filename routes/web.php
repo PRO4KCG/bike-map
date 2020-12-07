@@ -44,7 +44,8 @@ Route::get('/newpost', 'PagesController@getNewpost');
 Route::post('/newpost', 'PagesController@postNewpost');
 
 //投稿画面の編集ページ
-Route::get('/postediting', 'PagesController@getPostediting');
+//Route::get('/postediting', 'PagesController@getPostediting');
+Route::post('/postscreen/{id}/edit', 'PagesController@postPostediting');
 
 //ユーザー投稿詳細ページを表示
-Route::get('/detailspage', 'PagesController@getDetailspage');
+Route::get('/postscreen/{id}', 'PagesController@getDetailspage');
