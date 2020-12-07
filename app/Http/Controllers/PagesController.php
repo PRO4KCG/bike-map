@@ -264,6 +264,12 @@ class PagesController extends Controller
     return view('newpost');
   }
 
+    //detailspageを表示
+    public function getDetailspage()
+    {
+      return view('detailspage');
+    }
+
   //マイページのユーザー投稿編集画面のget
   public function getPostediting()
   {
