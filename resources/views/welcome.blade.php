@@ -1,4 +1,4 @@
-    @extends('layout.common')
+@extends('layout.common')
     @section('content')
 
     <head>
@@ -25,6 +25,7 @@
                 source: candidate
             });
         });
+
     </script>
     <script src="{{ asset('/js/topmap.js') }}"></script>
     <script src="{{ asset('/js/mapscroll.js') }}"></script>
@@ -35,7 +36,7 @@
         </div>
         @endif
         <!--検索フォーム-->
-        <div class="row">
+        <div id="search" class="row">
             <form action="/search" method="post" class="col-sm-12">
                 @csrf
                 <div class="input-group">

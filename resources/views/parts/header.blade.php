@@ -14,8 +14,9 @@
 						<li class="nav-item"><a class="nav-link" href="search">検索</a></li>
 						-->
                         <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>
+                       <!-- <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="/postscreen">ユーザー投稿</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/mypage">マイページ</a></li>
                         <!--ログアウトボタン-->
                         <!--
 						<li class="nav-item"><a class="nav-link" href="mypage">マイページ</a></li
@@ -24,6 +25,19 @@
                 </div>
             </nav>
         </div>
+<!--
+        <div class="ml-auto">
+        <div class="btn-group">
+  <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  ゲスト
+  </button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <button class="dropdown-item" type="button">ログアウト</button>
+    <button class="dropdown-item" type="button">アカウント削除</button>
+  </div>
+</div>
+</div>-->
+
         @guest
         @else
         <div class="ml-auto">

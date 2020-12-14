@@ -29,6 +29,7 @@
                 <label for="text">本文</label>
                 <textarea id="sentence" name="Sentence" rows="8" cols="80" class="form-control"></textarea>
                 <br>
+                <p>*画像は3枚まで</p>
                 <input type="file" class="form-group file_upload" name="post_images[]" accept="image/gif,image/jpeg,image/png,image/webp" multiple>
             </div>
             <!--ファイル複数選択
