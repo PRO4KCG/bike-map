@@ -4,3 +4,6 @@
 .leaflet-routing-container,.leaflet-bar, .leaflet-routing-collapsible, .leaflet-control{
     visibility: hidden;
 }
+.map{
+    margin-top: 50px;
+}

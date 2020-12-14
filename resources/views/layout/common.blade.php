@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- ファビコン表示 -->
         <link rel="shortcut icon" href="{{ asset('/favicon-96x96.ico') }}">
+        <!--アップルタッチアイコン表示-->
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/bike-icon.png') }}">
         <title>Bike-Map</title>
 
         <!-- css -->

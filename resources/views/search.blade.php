@@ -31,8 +31,5 @@
     </div>
 </div>
 
-<button onClick="GetLocate()" id="GetLocate">現在地の取得</button>
-<button type="button" class="btn btn-primary" onClick="NaviStart()">ナビ開始</button>
-
 @include('weather')
 @endsection

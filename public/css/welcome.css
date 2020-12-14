@@ -2,3 +2,15 @@
 .map{
     margin-top: 50px;
 }
+
+.container-fluid ,.ui-autocomplete-input{
+    position: absolute;
+}
+.container-fluid{
+position: relative;
+    z-index: 1;
+}
+.ui-autocomplete-input{
+    position: relative;
+    z-index: 2;
+}
