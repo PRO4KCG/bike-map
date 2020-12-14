@@ -56,6 +56,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('ログイン') }}
                                 </button>
+                                
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -64,6 +65,12 @@
                                 @endif
                             </div>
                         </div>
+                        <hr>
+                        <!--新規登録-->
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                            <a class="nav-link" href="/register">新規登録はこちら</a>
+                            </div>
                     </form>
                 </div>
             </div>
