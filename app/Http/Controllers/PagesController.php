@@ -10,6 +10,7 @@ use App\Favoriteloc;
 use App\Temporarily;
 use \InterventionImage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PagesController extends Controller
 {
@@ -30,29 +31,82 @@ class PagesController extends Controller
   //mypageを表示POST画像投稿
   public function postMypage(Request $request)
   {
-    $postResults = Favoriteloc::where('id', Auth::id())->get();
-    $count = 1;
-    $images = $request->file('images');
-    //dd($images);
-    if (count($images) > 3) {
-      return redirect('mypage')->with('status', '画像は3枚まで選択できます');
-    }
-    foreach ($images as $img) {
-      //dd('favBikeImage'.$count);
+    $all = PostRequest::all();
+    //URLからfavLocIDの取得
+    (int)$urlID = preg_replace('/[^0-9]/', '', url()->previous());
+    
+    $spotID = Location::where('locationName', $all["Spotname"])
+    ->select('locationID')
+    ->get()
+    ->toArray();
 
-      $path1 = $img->store('public/img');
-      $rePath1 = InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, null, function ($constraint) {
+    if(empty($spotID)) {
+      Temporarily::updateOrCreate(
+        ['favLocID' => $urlID], 
+        ['name' => $all["Spotname"], 'updated_at' => now()]
+      );
+
+      $spotID = [["locationID" => 1]]; 
+    }
+
+    //dd($spotID);
+
+    Favoriteloc::where('favLocID', $urlID)->update(
+      [
+        'title' => $all["Title"],
+        'locationID' => $spotID[0]["locationID"],
+        'comment' => $all["Sentence"]
+      ]
+    );
+    
+    $upImage1 = $request->file('upImage1');
+    $upImage2 = $request->file('upImage2');
+    $upImage3 = $request->file('upImage3');
+    /*
+    if(isset($upImage1)) {
+      $path1 = $upImage1->store('public/img');
+      InterventionImage::make(storage_path('app/public/img/' . basename($path1)))->resize(350, null, function ($constraint) {
         $constraint->aspectRatio();
       })->save(storage_path('app/public/img/' . basename($path1)));
-      User::where('id', Auth::id())
-        ->update(
+
+      Favoriteloc::where('favLocID', $urlID)->update(
+        [
+          'images1' => basename($path1)
+        ]
+      );
+    }
+    */
+
+    for($i = 1; $i <= 3; $i++) {
+      if(array_key_exists('select' . $i, $all)) {
+        $imgName = Favoriteloc::where('favLocID', (int)$urlID)->select('images' . $i)->get()->toArray();
+        Storage::delete('public/img/' . $imgName[0]['images' . $i]);
+        Favoriteloc::where('favLocID', $urlID)->update(
           [
-            'favBikeImage' . $count => basename($path1)
+            'images' . $i => null
           ]
         );
-      $count++;
+      }
+      
+      if(isset(${'upImage' . $i})) {
+        $imgName = Favoriteloc::where('favLocID', (int)$urlID)->select('images' . $i)->get()->toArray();
+        Storage::delete('public/img/' . $imgName[0]['images' . $i]);
+        $path = ${'upImage' . $i}->store('public/img');
+        InterventionImage::make(storage_path('app/public/img/' . basename($path)))->resize(350, null, function ($constraint) {
+          $constraint->aspectRatio();
+        })->save(storage_path('app/public/img/' . basename($path)));
+  
+        Favoriteloc::where('favLocID', $urlID)->update(
+          [
+            'images' . $i => basename($path)
+          ]
+        );
+      }
     }
-    return view('mypage', compact('postResults'));
+    
+    return redirect()->action(
+      'PagesController@getMypage',
+    );
   }
 
   public function deleteMypage(Request $request)
@@ -273,14 +327,43 @@ class PagesController extends Controller
     return view('detailspage', compact('results'));
   }
 
-  //マイページのユーザー投稿編集画面のget
+  //マイページのユーザー投稿編集画面のpost
   public function postPostediting($id)
   {
     //dd("OK");
     $fli = $id;
+    /*
     $results = Favoriteloc::Where('favLocID', $fli)
-      ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')->get();
+    ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
+    ->get();
+    //dd($result);
+    */
+    /*
+    $results = Favoriteloc::join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
+    ->leftJoin('temporarilies', function($join) {
+      $join->on('favolitelocs.favLocID', '=', 'temporarilies.favLocID')
+      ->where('favoritelocs.favLocID', $fli);
+    })
+    ->get();
+    */
+
+    $results = Favoriteloc::select(
+      'favoritelocs.title',
+      'favoritelocs.locationID',
+      'temporarilies.name',
+      'locations.locationName',
+      'favoritelocs.comment',
+      'favoritelocs.images1',
+      'favoritelocs.images2',
+      'favoritelocs.images3'
+    )
+    ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
+    ->leftJoin('temporarilies', 'favoritelocs.favLocID', '=', 'temporarilies.favLocID')
+    ->where('favoritelocs.favLocID', $fli)
+    ->get();
+
     //dd($results);
+
     return view('postediting', compact('results'));
   }
 }
