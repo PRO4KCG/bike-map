@@ -41,7 +41,7 @@ class PagesController extends Controller
     ->toArray();
 
     if(empty($spotID)) {
-      Temporarily::updateOrCreate(
+      Temporarily::updateOrInsert(
         ['favLocID' => $urlID], 
         ['name' => $all["Spotname"], 'updated_at' => now()]
       );
@@ -310,7 +310,11 @@ class PagesController extends Controller
   //newpostを表示
   public function getNewpost()
   {
-    return view('newpost');
+    if(Auth::check()){
+      return view('newpost');
+    }else {
+      return redirect('login');
+    }
   }
 
   public function postNewpost(Request $request)
