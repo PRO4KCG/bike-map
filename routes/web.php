@@ -49,3 +49,6 @@ Route::post('/postscreen/{id}/edit', 'PagesController@postPostediting');
 
 //ユーザー投稿詳細ページを表示
 Route::get('/postscreen/{id}', 'PagesController@getDetailspage');
+
+//mailを表示
+Route::get('/privacy', 'PagesController@getPrivacy');
