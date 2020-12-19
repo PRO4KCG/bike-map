@@ -1,6 +1,9 @@
 @extends('layout.common')
 
 @section('content')
+<head>
+     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+</head>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -59,8 +62,8 @@
                                 
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('パスワードを忘れた場合') }}
+                                    <a class="btn btn-link" href="/register">
+                                        {{ __('新規登録はこちら') }}
                                     </a>
                                 @endif
                             </div>
@@ -69,7 +72,7 @@
                         <!--新規登録-->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                            <a class="nav-link" href="/register">新規登録はこちら</a>
+                            <a class="nav-link padding8" href="{{ route('password.request') }}">パスワードを忘れた場合</a>
                             </div>
                     </form>
                 </div>
