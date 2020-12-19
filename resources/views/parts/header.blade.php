@@ -16,7 +16,9 @@
                         <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
                        <!-- <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="/postscreen">ユーザー投稿</a></li>
+                        @if( Auth::check() )
                         <li class="nav-item"><a class="nav-link" href="/mypage">マイページ</a></li>
+                        @endif
                         <!--ログアウトボタン-->
                         <!--
 						<li class="nav-item"><a class="nav-link" href="mypage">マイページ</a></li
