@@ -1,3 +1,3 @@
 <a href="{{ url('/privacy') }}">プライバシーポリシー</a>
-<a href="{{ url('/contact') }}">お問い合わせ</a>
+<a href="{{ url('/contact') }}">お問い合わせ(未作成)</a>
 <center><small>＠2020 Bike-Map</small></center>
