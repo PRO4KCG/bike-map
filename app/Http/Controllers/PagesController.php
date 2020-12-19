@@ -307,6 +307,12 @@ class PagesController extends Controller
     return view('mail');
   }
 
+  //privacyを表示
+  public function getPrivacy()
+  {
+    return view('privacy');
+  }
+
   //newpostを表示
   public function getNewpost()
   {
