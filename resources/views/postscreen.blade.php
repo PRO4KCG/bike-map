@@ -45,20 +45,25 @@
 
     <div class="card">
         @foreach ($postResults as $post)
-        <div class="row no-gutters">
-            <div class="col-md-4">
+        <div class="row no-gutters img-thumbnail flex">
+            <div class="col-md-4 align-self-center">
                 @isset($post->images1)
-                <div class="text-center">
-                    <a href="{{ url('/postscreen/'.$post->favLocID) }}">
-                        <img src="/storage/img/{{ $post->images1 }}" class="img-fluid">
-                    </a>
+                
+                <div class="flex-item">
+                    <div <!--class="image-trim"-->
+                        <a href="{{ url('/postscreen/'.$post->favLocID) }}">
+                            <img src="/storage/img/{{ $post->images1 }}" class="img-fluid ">
+                        </a>
+                    </div>
                 </div>
                 @endisset
                 @empty($post->images1)
-                <div class="text-center">
-                    <a href="{{ url('/postscreen/'.$post->favLocID) }}">
-                        <img src="http://placehold.jp/320x240.png?text=NO%20IMAGE" class="img-fluid">
-                    </a>
+                <div class="flex-item">
+                <div  <!--class="image-trim"-->
+                        <a href="{{ url('/postscreen/'.$post->favLocID) }}">
+                            <img src="http://placehold.jp/320x240.png?text=NO%20IMAGE" class="img-fluid ">
+                        </a>
+                    </div>
                 </div>
                 @endempty
             </div>

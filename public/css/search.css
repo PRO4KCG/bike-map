@@ -7,3 +7,9 @@
 .map{
     margin-top: 50px;
 }
+.weather{
+    background-color: #ddd;
+}
+.day{
+    text-align: center;
+}

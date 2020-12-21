@@ -130,9 +130,9 @@
 
 
 
-        <a class="dropdown-item " href="{{ route('logout') }}" onclick="event.preventDefault();
+        <a  href="{{ route('logout') }}" onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();" style="text-align:center;">
-            <div class="btn btn-danger">
+            <div class="btn btn-danger d-block btn-sm">
                 {{ __('ログアウト') }}
             </div>
         </a>
@@ -206,6 +206,33 @@
                 @endforeach
             </ul>
         </div>
+
+           <div>                     
+            <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                <a class="page-link" href="#!" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#!">1</a></li>
+                <li class="page-item"><a class="page-link" href="#!">2</a></li>
+                <li class="page-item"><a class="page-link" href="#!">3</a></li>
+                <li class="page-item"><a class="page-link" href="#!">4</a></li>
+                <li class="page-item"><a class="page-link" href="#!">5</a></li>
+                <li class="page-item"><a class="page-link" href="#!">6</a></li>
+                <li class="page-item">
+                <a class="page-link" href="#!" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </li>
+            </ul>
+            </nav>
+        </div>
+
+
     </div>
     <!--
          バイク投稿フォーム 
