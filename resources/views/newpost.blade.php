@@ -3,6 +3,25 @@
 <head>
      <link rel="stylesheet" href="{{ asset('css/postscreen.css') }}">
 </head>
+<script>
+        let tr = @json($topResult);
+
+        let candidate = [];
+        //console.log(tr);
+        for (let i = 0; i < Object.keys(tr).length; i++) {
+            if (tr[i]["locationName"] == "登録待ち") {
+                continue;
+            }
+            candidate.push(tr[i]["locationName"]);
+        }
+        //console.log(candidate);
+        $(document).ready(function() {
+            $('#spotname').autocomplete({
+                source: candidate
+            });
+        });
+
+    </script>
 <div class="container">
     @if (session('status'))
     <div class="alert alert-success">

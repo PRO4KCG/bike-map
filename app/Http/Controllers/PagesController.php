@@ -181,8 +181,10 @@ class PagesController extends Controller
   public function getSearch($id)
   {
     $result = Location::Where('locationID', $id)->get()->toArray();
+
+    $topResult = Location::get()->toArray();
     //dd($result);
-    return view('search', compact("result"));
+    return view('search', compact("result", "topResult"));
   }
 
   public function postSearch(Request $request)
@@ -351,8 +353,9 @@ class PagesController extends Controller
   //newpostを表示
   public function getNewpost()
   {
+    $topResult = Location::get()->toArray();
     if (Auth::check()) {
-      return view('newpost');
+      return view('newpost', compact('topResult'));
     } else {
       return redirect('login');
     }
