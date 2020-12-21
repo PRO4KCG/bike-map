@@ -1,0 +1,19 @@
+footer{
+    height: 80px;
+}
+.footlist li a{
+    color: #000;
+}
+
+.footlist{
+    display: flex;
+}
+
+.footlist li{
+    list-style: none;
+    display: inline-block;
+}
+
+.footlist li:not(:first-child)::before {
+    content: "｜";
+  }
