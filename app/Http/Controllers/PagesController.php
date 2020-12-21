@@ -25,7 +25,11 @@ class PagesController extends Controller
   public function getMypage()
   {
     $postResults = Favoriteloc::where('id', Auth::id())->get();
-    return view('mypage', compact('postResults'));
+    if (Auth::check()) {
+      return view('mypage', compact('postResults'));
+    } else {
+      return redirect('login');
+    }
   }
 
   //mypageを表示POST画像投稿

@@ -45,7 +45,7 @@
 
         <!--場所名-->
         @if($result->locationID == 1)
-        <p>{{ $result->name }}</p>
+        <p>登録待ち({{ $result->name }})</p>
         @else
         <p>{{ $result->locationName }}</p>
         @endif
