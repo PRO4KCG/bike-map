@@ -44,19 +44,19 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
+                                <!--<div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('パスワードを記憶') }}
-                                    </label>
+                                    </label>-->
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="login btn btn-primary ">
                                     {{ __('ログイン') }}
                                 </button>
                                 
@@ -68,13 +68,11 @@
                                 @endif
                             </div>
                         </div>
-                        <hr>
-                        <!--新規登録-->
+                        <!--新規登録
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                             <a class="nav-link padding8" href="{{ route('password.request') }}">パスワードを忘れた場合</a>
-                            </div>
-                    </form>
+                            </div>-->
                 </div>
             </div>
         </div>
