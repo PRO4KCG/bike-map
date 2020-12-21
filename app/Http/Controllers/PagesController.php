@@ -34,19 +34,19 @@ class PagesController extends Controller
     $all = PostRequest::all();
     //URLからfavLocIDの取得
     (int)$urlID = preg_replace('/[^0-9]/', '', url()->previous());
-    
-    $spotID = Location::where('locationName', $all["Spotname"])
-    ->select('locationID')
-    ->get()
-    ->toArray();
 
-    if(empty($spotID)) {
+    $spotID = Location::where('locationName', $all["Spotname"])
+      ->select('locationID')
+      ->get()
+      ->toArray();
+
+    if (empty($spotID)) {
       Temporarily::updateOrInsert(
-        ['favLocID' => $urlID], 
+        ['favLocID' => $urlID],
         ['name' => $all["Spotname"], 'updated_at' => now()]
       );
 
-      $spotID = [["locationID" => 1]]; 
+      $spotID = [["locationID" => 1]];
     }
 
     //dd($spotID);
@@ -58,7 +58,7 @@ class PagesController extends Controller
         'comment' => $all["Sentence"]
       ]
     );
-    
+
     $upImage1 = $request->file('upImage1');
     $upImage2 = $request->file('upImage2');
     $upImage3 = $request->file('upImage3');
@@ -77,8 +77,8 @@ class PagesController extends Controller
     }
     */
 
-    for($i = 1; $i <= 3; $i++) {
-      if(array_key_exists('select' . $i, $all)) {
+    for ($i = 1; $i <= 3; $i++) {
+      if (array_key_exists('select' . $i, $all)) {
         $imgName = Favoriteloc::where('favLocID', (int)$urlID)->select('images' . $i)->get()->toArray();
         Storage::delete('public/img/' . $imgName[0]['images' . $i]);
         Favoriteloc::where('favLocID', $urlID)->update(
@@ -87,15 +87,15 @@ class PagesController extends Controller
           ]
         );
       }
-      
-      if(isset(${'upImage' . $i})) {
+
+      if (isset(${'upImage' . $i})) {
         $imgName = Favoriteloc::where('favLocID', (int)$urlID)->select('images' . $i)->get()->toArray();
         Storage::delete('public/img/' . $imgName[0]['images' . $i]);
         $path = ${'upImage' . $i}->store('public/img');
         InterventionImage::make(storage_path('app/public/img/' . basename($path)))->resize(350, null, function ($constraint) {
           $constraint->aspectRatio();
         })->save(storage_path('app/public/img/' . basename($path)));
-  
+
         Favoriteloc::where('favLocID', $urlID)->update(
           [
             'images' . $i => basename($path)
@@ -103,7 +103,7 @@ class PagesController extends Controller
         );
       }
     }
-    
+
     return redirect()->action(
       'PagesController@getMypage',
     );
@@ -228,6 +228,37 @@ class PagesController extends Controller
   {
     //http://placehold.jp/320x240.png?text=NO%20IMAGE
     $all = PostRequest::all();
+
+    //3項目が空のときは新規投稿画面にリダイレクトする
+    /*
+    if (!isset($all["Title"])) {
+      return redirect('newpost')->with('status', 'タイトルは必須項目です');
+    } elseif (!isset($all["Spotname"])) {
+      return redirect('newpost')->with('status', '場所名は必須項目です');
+    } elseif (!isset($all["Sentence"])) {
+      return redirect('newpost')->with('status', '本文は必須項目です');
+    }
+    */
+
+    $message = "";
+    if (!isset($all["Title"])) {
+      $message .= "タイトル・";
+      //return redirect('newpost')->with('status', 'タイトルは必須項目です');
+    }
+    if (!isset($all["Spotname"])) {
+      $message .= "場所名・";
+      //return redirect('newpost')->with('status', '場所名は必須項目です');
+    }
+    if (!isset($all["Sentence"])) {
+      $message .= "本文・";
+      //return redirect('newpost')->with('status', '本文は必須項目です');
+    }
+    if (strcmp($message, "")) {
+      $message = mb_substr($message, 0, -1, "UTF-8");
+      return redirect('newpost')->with('status', $message . 'は必須項目です');
+    }
+    //dd($message);
+
     $images = $request->file('post_images');
     //$images = $all["images"];
     //dd($images);
@@ -297,7 +328,7 @@ class PagesController extends Controller
     $like = $request->input('like');
     //dd($like);
     Favoriteloc::where('favLocID', $like)->increment('rating');
-    $postResults = Favoriteloc::get();
+    $postResults = Favoriteloc::orderBy('favLocID', 'desc')->get();
     return view('postscreen', compact('postResults'));
   }
 
@@ -316,9 +347,9 @@ class PagesController extends Controller
   //newpostを表示
   public function getNewpost()
   {
-    if(Auth::check()){
+    if (Auth::check()) {
       return view('newpost');
-    }else {
+    } else {
       return redirect('login');
     }
   }
@@ -332,8 +363,24 @@ class PagesController extends Controller
   public function getDetailspage($id)
   {
     $fli = $id;
-    $results = Favoriteloc::Where('favLocID', $fli)->get();
-    //dd($results);
+    $results = Favoriteloc::select(
+      'favoritelocs.title',
+      'temporarilies.name',
+      'locations.locationID',
+      'locations.locationName',
+      'favoritelocs.comment',
+      'favoritelocs.images1',
+      'favoritelocs.images2',
+      'favoritelocs.images3',
+      'users.name as userName',
+      'favoritelocs.created_at as create'
+    )
+      ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
+      ->join('users', 'favoritelocs.id', '=', 'users.id')
+      ->leftJoin('temporarilies', 'favoritelocs.favLocID', '=', 'temporarilies.favLocID')
+      ->where('favoritelocs.favLocID', $fli)
+      ->get();
+    #dd($results);
     return view('detailspage', compact('results'));
   }
 
@@ -367,10 +414,10 @@ class PagesController extends Controller
       'favoritelocs.images2',
       'favoritelocs.images3'
     )
-    ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
-    ->leftJoin('temporarilies', 'favoritelocs.favLocID', '=', 'temporarilies.favLocID')
-    ->where('favoritelocs.favLocID', $fli)
-    ->get();
+      ->join('locations', 'favoritelocs.locationID', '=', 'locations.locationID')
+      ->leftJoin('temporarilies', 'favoritelocs.favLocID', '=', 'temporarilies.favLocID')
+      ->where('favoritelocs.favLocID', $fli)
+      ->get();
 
     //dd($results);
 
