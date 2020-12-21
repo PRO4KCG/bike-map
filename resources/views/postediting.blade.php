@@ -72,7 +72,6 @@
                     <div class="img-wrap col-sm-4">
                         <!--下4行ラジオボタン-->
                         <div class="custom-control custom-checkbox float-right">
-                        
                             <input type="checkbox" class="custom-control-input" id="custom-check-3" name="select3">
                             <label class="custom-control-label" for="custom-check-3">削除</label>
                         </div>
