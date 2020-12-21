@@ -78,10 +78,11 @@ const mapon = () => {//html読み込み時にjsを処理
             }).then(function (json) {
                 jsonArray = JSON.stringify(json);
                 data = JSON.parse(jsonArray);
+                //console.log(data);
 
                 for (var i = 0; i <= 6; i++) {
 
-                    var weat = data['daily'][i]['weather'][0]['main'];  //その日の天気の取得
+                    var weat = data['daily'][i]['weather'][0]['description'];  //その日の天気の取得
                     var icon = data['daily'][i]['weather'][0]['icon'];  //天気画像の取得
                     var utc = data['daily'][i]['dt'];   //日付の取得(UTC方式)
 
