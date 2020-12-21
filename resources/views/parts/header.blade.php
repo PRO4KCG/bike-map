@@ -44,9 +44,9 @@
         @else
         <div class="ml-auto">
             <nav class="navbar">
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#logout" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">
-                    <a href="{{ url('/mypage') }}"><span>{{ Auth::user()->name }}</span></a>
-                </button>
+                <!--<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#logout" aria-controls="bs-navi" aria-expanded="false" aria-label="Toggle navigation">-->
+                    <!--<a href="{{ url('/mypage') }}">--><p>{{ Auth::user()->name }}</p><!--</a>-->
+                <!--</button>-->
             </nav>
             <!--ログアウトボタン
             <div class="collapse navbar-collapse" id="logout">
