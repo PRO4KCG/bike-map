@@ -20,11 +20,16 @@
        
         <!-- js -->
         <!--<script src="{{ asset('/js/topmap.js') }}"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         
         <!--https://map.yahooapis.jp/search/local/V1/localSearch-->
         
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+
         
     </head>
     <body>
