@@ -63,11 +63,6 @@
                                 <h4>バイクの車種</h4>
                             </span>
                             <input type="text" class="form-control" aria-describedby="emailHelp" value="{{ Auth::user()->bikeName }}" name="bikeName">
-                            <!--保存ボタン
-                        <div class="text-md-center text-right paddingfive p-2">
-                            <button type="button" class="btn btn-primary float-right">保存</button>
-                        </div>
-                        -->
                         </li>
                         <!--bikeの画像-->
                         <li class="list-group-item">
@@ -76,12 +71,12 @@
                             </span>
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
-                                    <button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <!--<button class="btn btn-link " type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                         画像
-                                    </button>
+                                    </button>-->
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <img src="/storage/img/{{ Auth::user()->favBikeImage1 }}" onerror="this.onerror = null; this.src='';">
+                                            <img class="img-fluid" src="/storage/img/{{ Auth::user()->favBikeImage1 }}" onerror="this.onerror = null; this.src='';">
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +171,7 @@
                                 @csrf
                                 @method('delete')
                                 <!--<div class="fli" value="{{ $post->favLocID }}" name="fli"></div>-->
-                                <button type="submit" class="card-link btn btn-danger float-right" data-toggle="modal" data-target="#exampleModalCentered" value="{{ $post->favLocID }}" name="fli" onClick="delete_alert(event);return false;">削除</button>
+                                <button type="submit" class="card-link btn btn-danger float-right position-top-10" data-toggle="modal" data-target="#exampleModalCentered" value="{{ $post->favLocID }}" name="fli" onClick="delete_alert(event);return false;">削除</button>
                                 <!--
                                 <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -199,12 +194,13 @@
 
                             <!--削除と編集の間に入れないと正常に配置できなかったためここ-->
                             <!--<i class="fa fa-heart fa-lg" aria-hidden="true"><span>1</span></i>-->
-                            <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
+                            <!--<button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>-->
                             <!--<button type="submit" class="card-link btn btn-primary float-right" href="{{ url('/postediting') }}">編集</button>-->
                             <form action="/postscreen/{{ $post->favLocID }}/edit" method="post">
                                 @csrf
                                 <button type="submit" class="card-link btn btn-primary float-right">編集</button>
                             </form>
+                            <button type="submit" class="card-link btn text-danger " name="like" value="{{ $post->favLocID }}"><i class="fas fa-heart "></i> <span>{{ $post->rating }}</span></button>
                         </div>
                 </li>
                 @endforeach

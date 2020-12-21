@@ -12,3 +12,6 @@
   white-space: nowrap;
 }
 
+.position-top-10 {
+  display: flex;
+}

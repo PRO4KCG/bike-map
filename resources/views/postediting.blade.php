@@ -39,7 +39,7 @@
                         <!--下4行ラジオボタン-->
                         <div class="custom-control custom-checkbox float-right">
                             <input type="checkbox" class="custom-control-input" id="custom-check-1" name="select1">
-                            <label class="custom-control-label" for="custom-check-1"></label>
+                            <label class="custom-control-label" for="custom-check-1">削除</label>
                         </div>
 
 
@@ -56,7 +56,7 @@
                         <!--下4行ラジオボタン-->
                         <div class="custom-control custom-checkbox float-right">
                             <input type="checkbox" class="custom-control-input" id="custom-check-2" name="select2">
-                            <label class="custom-control-label" for="custom-check-2"></label>
+                            <label class="custom-control-label" for="custom-check-2">削除</label>
                         </div>
 
 
@@ -72,8 +72,9 @@
                     <div class="img-wrap col-sm-4">
                         <!--下4行ラジオボタン-->
                         <div class="custom-control custom-checkbox float-right">
+                        
                             <input type="checkbox" class="custom-control-input" id="custom-check-3" name="select3">
-                            <label class="custom-control-label" for="custom-check-3"></label>
+                            <label class="custom-control-label" for="custom-check-3">削除</label>
                         </div>
 
 
