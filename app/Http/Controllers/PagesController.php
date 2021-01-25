@@ -201,7 +201,8 @@ class PagesController extends Controller
     } else if (count($result) == 0) {
       return redirect('/')->with('status', '検索結果がありません');
     } else {
-      return view('search', compact("result"));
+      $topResult = Location::get()->toArray();
+      return view('search', compact("result", "topResult"));
     }
   }
 

@@ -7,23 +7,22 @@
 <script>
     let dest = @json($result);
 
-        let tr = @json($topResult);
+    let tr = @json($topResult);
 
-        let candidate = [];
-        //console.log(tr);
-        for (let i = 0; i < Object.keys(tr).length; i++) {
-            if (tr[i]["locationName"] == "登録待ち") {
-                continue;
-            }
-            candidate.push(tr[i]["locationName"]);
+    let candidate = [];
+    //console.log(tr);
+    for (let i = 0; i < Object.keys(tr).length; i++) {
+        if (tr[i]["locationName"] == "登録待ち") {
+            continue;
         }
-        //console.log(candidate);
-        $(document).ready(function() {
-            $('.form-control').autocomplete({
-                source: candidate
-            });
+        candidate.push(tr[i]["locationName"]);
+    }
+    //console.log(candidate);
+    $(document).ready(function() {
+        $('.form-control').autocomplete({
+            source: candidate
         });
-    
+    });
 </script>
 <script src="{{ asset('/js/weather.js') }}"></script>
 <script src="{{ asset('/js/Mapping.js') }}"></script>
